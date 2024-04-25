@@ -152,6 +152,7 @@ public class SubjectDao extends Dao{
 				//プリペアにバインド
 				statement.setString(2, subject.getName());
 				statement.setString(3, subject.getSchool());
+
 			}
 			//プリペア実行
 			count=statement.executeUpdate();
