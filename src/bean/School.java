@@ -32,6 +32,6 @@ public class School implements Serializable {
 
 
 }
-
+//llll
 
 //おこ
