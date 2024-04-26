@@ -9,10 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.security.auth.Subject;
-
 import bean.School;
 import bean.Student;
+import bean.Subject;
 import bean.Test;
 
 public class TestDao  extends Dao{
@@ -41,6 +40,7 @@ public class TestDao  extends Dao{
 			//各DAO初期化
 			SchoolDao schoolDao= new SchoolDao();
 			StudentDao studentDao = new StudentDao();
+			SubjectDao subjectDao = new SubjectDao();
 
 			if(rSet.next()){
 				//リザルトセットが存在する場合
@@ -180,7 +180,7 @@ public class TestDao  extends Dao{
 			//データベースから学生取得
 			Test old=get(test.getPoint());
 			if(old==null){
-				//学生が存在しなかった場合
+
 				//プリペアにINSERT文セット
 				statement=connection.prepareStatement(
 						"insert into student(student_no,name,ent_year,class_num,is_attend,school_cd) values(?,?,?,?,?,?)");
