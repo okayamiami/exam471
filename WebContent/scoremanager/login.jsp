@@ -20,22 +20,27 @@
 
 	required:input要素を入力必須にする属性
  -->
+ 	<h2>ログイン</h2>
 
 	<!-- ＩＤ -->
 	<label>ＩＤ</label>
-	<input type="text" name="id" maxlength="20"value="admin">
+	<input type="text" name="id" maxlength="20"value="admin"><br>
 
 	<!-- パスワード -->
 	<label>パスワード</label>
-	<input type="password" name="password" value="password">
+	<input type="password" name="password" value="password"><br>
 
-	<!-- 名前 -->
+	<!-- 名前
 	<label>名前</label>
 	<input type="text" name="namae" value="大原 門左衛門">
 
-	<!-- 学校コード -->
+	     学校コード
 	<label>学校コード</label>
 	<input type="text" name="school_cd" value="knz">
+ -->
+
+ 	<!-- チェックボックス -->
+ 	<label><input type="checkbox" name="mail">パスワードを表示</label><br>
 
 	<!-- ログイン用ボタン -->
 	<input type="submit" name="login" value="ログイン"/>
