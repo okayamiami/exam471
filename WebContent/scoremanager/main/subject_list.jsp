@@ -12,76 +12,42 @@
 <h2>科目管理</h2>
 	<a href="SubjectCreate.action">新規登録</a>
 
-	<form method="get">
-		<label>入学年度 </label>
-		<select name="f1">
-			<option value="0">--------</option>
-			<c:forEach var="year" items="${ent_year_set}">
-				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
-				<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
-			</c:forEach>
-		</select>
-
-		<label>クラス</label>
-		<select name="f2">
-			<option value="0">--------</option>
-			<c:forEach var="num" items="${class_num_set}">
-				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
-				<option value="${num}" <c:if test="${num==f2}">selected</c:if>>${num}</option>
-			</c:forEach>
-		</select>
-
-		<label>在学中
-			<%-- パラメーターf3が存在している場合checkedを追記 --%>
-			<input type="checkbox" name="f3" value="t"
-			<c:if test="${!empty f3}">checked</c:if> />
-		</label>
-
-		<button>絞込み</button>
-
-		<div>${errors.get("f1")}</div>
-	</form>
-
 	<c:choose>
-		<c:when test="${students.size()>0}">
-			<div>検索結果：${students.size()}件</div>
+		<c:when test="${list.size()>0}">
+			<div>検索結果：${list.size()}件</div>
 
 			<table class="table table-hover">
 				<tr>
-					<th>入学年度</th>
-					<th>学生番号</th>
-					<th>氏名</th>
-					<th>クラス</th>
-					<th class="text-center">在学中</th>
+					<th>学校コード</th>
+					<th>科目コード</th>
+					<th>科目名</th>
 					<th></th>
 					<th></th>
 				</tr>
-				<c:forEach var="student" items="${students}">
+				<c:forEach var="subject" items="${list}">
 					<tr>
-						<td>${student.entYear}</td>
-						<td>${student.student_no}</td>
-						<td>${student.name}</td>
-						<td>${student.classNum}</td>
+						<td>${subject.subject_cd}</td>
+						<td>${subject.name}</td>
+						<td>${subject.school_cd}</td>
 						<td class="text-center">
-							<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
-							<c:choose>
-								<c:when test="${student.isAttend()}">
-									○
-								</c:when>
-								<c:otherwise>
-									×
-								</c:otherwise>
-							</c:choose>
 						</td>
-						<td><a href="StudentUpdate.action?student_no=${student.student_no}">変更</a></td>
+
+						<td><a href="SubjectUpdate.action?subject_cd=${subject.subject_cd}">変更/更新</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:when>
 		<c:otherwise>
-			<div>学生情報が存在しませんでした</div>
+			<div>科目の情報が存在しませんでした</div>
 		</c:otherwise>
 	</c:choose>
+
+
+
+	<a href="SubjectUpdate.action">科目情報変更</a>
+
+	<a href="SujectDelete.action">科目情報削除</a>
+
 
 
 

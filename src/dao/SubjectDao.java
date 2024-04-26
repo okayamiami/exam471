@@ -194,12 +194,14 @@ public class SubjectDao extends Dao{
 		try{
 			//データベースから科目情報取得
 			Subject old= get(subject.getSubject_cd(), subject.getSchool());
-
-			//科目コードが?の科目を削除
-			statement=connection.prepareStatement(
-					"delete from subject where subject_cd=? values(?)");
-			//プリペアにバインド
-			statement.setString(1, subject.getSubject_cd());
+			if(old !=null){
+				//科目と学校コードがnullじゃなければ科目コードが?の科目を削除
+				statement=connection.prepareStatement(
+						"delete from subject where subject_cd=?, school_cd=? values(?,?)");
+				//プリペアにバインド
+				statement.setString(1, subject.getSubject_cd());
+				statement.setString(2, subject.getSchool().getCd());
+			}
 
 			//プリペア実行
 			count=statement.executeUpdate();
