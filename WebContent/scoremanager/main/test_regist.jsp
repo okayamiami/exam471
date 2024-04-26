@@ -44,9 +44,9 @@
 		<label>回数</label>
 		<select name="f4">
 			<option value="0">--------</option>
-			<c:forEach var="trynum" items="${class_trynum_set}">
+			<c:forEach var="no" items="${class_no_set}">
 				<%-- 現在のsubと選択されていたf4が一致していた場合selectedを追記 --%>
-				<option value="${trynum}" <c:if test="${trynum==f4}">selected</c:if>>${trynum}</option>
+				<option value="${no}" <c:if test="${no==f4}">selected</c:if>>${no}</option>
 			</c:forEach>
 		</select>
 
@@ -76,22 +76,19 @@
 						<td>${student.classNum}</td>
 						<td>${student.student_no}</td>
 						<td>${student.name}</td>
-						<td>${student.tryNum}</td>
-						
-						<label>氏名</label>
+						<td>${student.point}</td>
+
+						<label>点数</label>
 						<input type="text"
-							name="trynum" placeholder="点数を変更" maxlength="3"
-							value="${trynum}" required />
-						<div>${errors.get("trynum")}</div>
-						
+							name="point" placeholder="点数を変更" maxlength="3"
+							value="${point}" required />
+						<div>${errors.get("point")}</div>
+
 						<td><a href="StudentUpdate.action?student_no=${student.student_no}">変更</a></td>
 					</tr>
 				</c:forEach>
 			</table>
 		</c:when>
-		<c:otherwise>
-			<div>成績情報が存在しませんでした</div>
-		</c:otherwise>
 	</c:choose>
 
 </body>

@@ -11,7 +11,7 @@ import bean.Student;
 import bean.TestListStudent;
 
 public class TestListStudentDao extends Dao{
-	private String baseSql= "select * from test where student_no = ? ";
+	private String baseSql= "select distinct subject.name,subject.subject_cd,test.no,test.point from test inner join subject on subject.subject_cd=test.subject_cd where student_no = ? ";
 
 	private List<TestListStudent> postFilter(ResultSet rSet) throws Exception {
 		List<TestListStudent>list=new ArrayList<>();

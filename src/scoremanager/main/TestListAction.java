@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import bean.Subject;
 import bean.Teacher;
 import dao.ClassNumDao;
+import dao.SubjectDao;
 import tool.Action;
 
 public class TestListAction extends Action{
@@ -26,7 +28,7 @@ public class TestListAction extends Action{
 
 
 		List<String> clist = cNumDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-		List<String> sublist = subDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとに科目の一覧を取得
+		List<Subject> sublist = subDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとに科目の一覧を取得
 
 		for (int i = year - 10; i < year + 10; i++) {
 			entYearSet.add(i);
@@ -34,6 +36,7 @@ public class TestListAction extends Action{
 
 		req.setAttribute("class_num_set", clist);//クラス番号のlistをセット
 		req.setAttribute("subjet_set", sublist);//のlistをセット
+		req.getRequestDispatcher("test_list.jsp").forward(req, res);
 	}
 
 
