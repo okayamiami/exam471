@@ -16,5 +16,4 @@ location.href="/exam471/scoremanager/Login.action";
 
 </body>
 </html>
-//ii
 <%-- test takano --%>
