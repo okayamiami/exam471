@@ -10,7 +10,6 @@ import java.util.List;
 import javax.security.auth.Subject;
 
 import bean.School;
-import bean.Student;
 import bean.Test;
 
 public class TestDao  extends Dao{
@@ -26,7 +25,7 @@ public class TestDao  extends Dao{
 
 		try{
 			//prepareにsql文セット(
-			statement=connection.prepareStatement("select * from test where no=? ");
+			statement=connection.prepareStatement("select * from test where student_no=? ");
 			//バインド
 			statement.setString(1, student);
 			statement.setString(2, subject.getCd());
@@ -48,8 +47,8 @@ public class TestDao  extends Dao{
 				test.setPoint(rSet.getInt("point"));
 				//学校フィールドには学校コードで検索した学校インスタンスをセット
 				test.setSchool(schoolDao.get(rSet.getString("school_cd")));
-				test.setSubject(subjectDao.get(rSet.getString("subject")));
-				test.setStudent(studentDao.get(rSet.getString("student")));
+				test.setSubject(subjectDao.get(rSet.getString("subject_cd")));
+				test.setStudent(studentDao.get(rSet.getString("student_no")));
 
 			}else{
 				//リザルトセットが存在しない場合
@@ -165,179 +164,40 @@ public class TestDao  extends Dao{
 		return list;
 	}
 
-	/**
-	 * filterメソッド 学校、入学年度、在学フラグを指定して学生の一覧を取得する
-	 *
-	 * @param school:School
-	 *            学校
-	 * @param entYear:int
-	 *            入学年度
-	 * @param isAttend:boolean
-	 *            在学フラグ
-	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
-	 * @throws Exception
-	 */
-	public List<Student> filter(School school, int entYear, boolean isAttend) throws Exception {
-		//戻り値用のリストを作成
-		//new演算子とArrayListで空のListを用意
-		List<Student> list = new ArrayList<>();
 
-		//データベースへのコネクション
-		Connection connection=getConnection();
-		//プリペアードステートメント
-		PreparedStatement statement=null;
-		//リザルトセット
-		ResultSet rSet=null;
-		//SQL文の条件追加
-		String sql2="and ent_year=? ";
-		//SQL文のソート
-		String sqls="order by student_no asc ";
-
-		//SQL文の在学フラグ条件
-		String sql3="";
-		//trueの場合
-		if(isAttend){
-			sql3="and is_attend=true ";
-		}
-
-		try{
-			//プリペアードステートメントにSQLセット
-			statement=connection.prepareStatement(baseSql+sql2+sql3+sqls);
-			//プリペアードステートメントに学校コードをバインド
-			statement.setString(1, school.getCd());
-			//プリペアードステートメントに入学年度をバインド
-			statement.setInt(2, entYear);
-			//プリペアードステートメントを実行
-			rSet=statement.executeQuery();
-
-			list=postFilter(rSet,test);
-		}catch(Exception e){
-			throw e;
-		}finally{
-			if(statement !=null){
-				try{
-					statement.close();
-				}catch(SQLException sqle){
-					throw sqle;
-				}
-			}
-			if(connection !=null){
-				try{
-					connection.close();
-				}catch(SQLException sqle){
-					throw sqle;
-				}
-			}
-		}
-		return list;
-	}
-
-	/**
-	 * filterメソッド 学校、在学フラグを指定して学生の一覧を取得する
-	 *
-	 * @param school:School
-	 *            学校
-	 * @param isAttend:boolean
-	 *            在学フラグ
-	 * @return 学生のリスト:List<Student> 存在しない場合は0件のリスト
-	 * @throws Exception
-	 */
-	public List<Student> filter(School school, boolean isAttend) throws Exception {
-		//戻り値用のリストを作成
-		//new演算子とArrayListで空のListを用意
-		List<Student> list = new ArrayList<>();
-
-		//データベースへのコネクション
-		Connection connection=getConnection();
-		//プリペアードステートメント
-		PreparedStatement statement=null;
-		//リザルトセット
-		ResultSet rSet=null;
-
-		//SQL文のソート
-		String sqls="order by student_no asc ";
-
-		//SQL文の在学フラグ条件
-		String sql3="";
-		//trueの場合
-		if(isAttend){
-			sql3="and is_attend=true ";
-		}
-
-		try{
-			//プリペアードステートメントにSQLセット
-			statement=connection.prepareStatement(baseSql+sql3+sqls);
-			statement.setString(1, school.getCd());
-
-			//プリペアードステートメントを実行
-			//System.out.println(statement);救世主
-
-			rSet = statement.executeQuery();
-
-			list=postFilter(rSet,school);
-
-		}catch(Exception e){
-			throw e;
-		}finally{
-			if(statement !=null){
-				try{
-					statement.close();
-				}catch(SQLException sqle){
-					throw sqle;
-				}
-			}
-			if(connection !=null){
-				try{
-					connection.close();
-				}catch(SQLException sqle){
-					throw sqle;
-				}
-			}
-		}
-		return list;
-	}
-
-	/**
-	 * saveメソッド 学生インスタンスをデータベースに保存する データが存在する場合は更新、存在しない場合は登録
-	 *
-	 * @param student：Student
-	 *            学生
-	 * @return 成功:true, 失敗:false
-	 * @throws Exception
-	 */
-	public boolean save(Student student) throws Exception {
+	public  boolean save(List<Test> list) throws Exception {
 		//データベースへのコネクション
 		Connection connection =getConnection();
+
 		//プリペアードステートメント
 		PreparedStatement statement=null;
 		//実行件数
 		int count=0;
 		try{
 			//データベースから学生取得
-			Student old=get(student.getStudent_no());
+			Test old=get(test.getPoint());
 			if(old==null){
 				//学生が存在しなかった場合
 				//プリペアにINSERT文セット
 				statement=connection.prepareStatement(
 						"insert into student(student_no,name,ent_year,class_num,is_attend,school_cd) values(?,?,?,?,?,?)");
 				//プリペアにバインド
-				statement.setString(1, student.getStudent_no());
-				statement.setString(2, student.getName());
-				statement.setInt(3, student.getEntYear());
-				statement.setString(4, student.getClassNum());
-				statement.setBoolean(5, student.isAttend());
-				statement.setString(6, student.getSchool().getCd());
+				statement.setString(1, test.getStudent_no());
+				statement.setString(2, test.getSubject_cd());
+				statement.setString(3, test.getSchool().getCd());
+				statement.setInt(4, test.getNo());
+				statement.setInt(5, test.getPoint());
 			}else{
-				//学生が存在しなかった場合
 				//プリペアにUPDATE文セット
 				statement=connection.prepareStatement(
 						"update student set name=?, ent_year=?, class_num=?, is_attend=? where student_no=? ");
 				//プリペアにバインド
-				statement.setString(1, student.getName());
-				statement.setInt(2, student.getEntYear());
-				statement.setString(3, student.getClassNum());
-				statement.setBoolean(4, student.isAttend());
-				statement.setString(5, student.getStudent_no());
+				statement.setString(1, test.getStudent_no());
+				statement.setString(2, test.getSubject_cd());
+				statement.setString(3, test.getSchool().getCd());
+				statement.setInt(4, test.getNo());
+				statement.setInt(5, test.getPoint());
+
 			}
 			//プリペア実行
 			count=statement.executeUpdate();
@@ -367,5 +227,19 @@ public class TestDao  extends Dao{
 			return false;
 		}
 	}
+
+	private boolean save(Test test , Connection connection) throws Exception {
+		//データベースへのコネクション
+		Connection connection =getConnection();
+	}
+
+	//public boolean delete(List<Test> list) throws Exception {
+
+	//}
+
+	//private boolean delete (Test test , Connection connection) throws Exception {
+
+	//}
+
 }
 
