@@ -13,6 +13,7 @@ import bean.Subject;
 public class SubjectDao extends Dao{
 
 
+	//getメソッド
 	public Subject get(String subject_cd, School school)throws Exception {
 		//科目インスタンス初期化
 		Subject subject = new Subject();
@@ -68,7 +69,8 @@ public class SubjectDao extends Dao{
 		return subject;
 	}
 
-	private List<Subject> filter(School school) throws Exception {
+	//filterメソッド
+	public List<Subject> filter(School school) throws Exception {
 
 		//戻り値用のリストを作成
 		//new演算子とArrayListで空のListを用意
@@ -85,12 +87,6 @@ public class SubjectDao extends Dao{
 		//SQL文のソート
 		String sqls="order by SUBJECT_CD asc ";
 
-		//SQL文の在学フラグ条件
-		//String sql3="";
-		//trueの場合
-		//if(isAttend){
-		//	sql3="and is_attend=true ";
-		//}
 
 		try{
 			//プリペアードステートメントにSQLセット
@@ -103,7 +99,6 @@ public class SubjectDao extends Dao{
 			statement.setString(3, rSet.getString("name"));
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
-			//list=postFilter(rSet,school);
 		}catch(Exception e){
 			throw e;
 		}finally{
@@ -125,6 +120,7 @@ public class SubjectDao extends Dao{
 		return list;
 	}
 
+	//saveメソッド
 	public boolean save(Subject subject) throws Exception {
 		//データベースへのコネクション
 		Connection connection =getConnection();
@@ -134,7 +130,7 @@ public class SubjectDao extends Dao{
 		int count=0;
 		try{
 			//データベースから科目情報取得
-			Subject old= get(subject.getSubject_cd());
+			Subject old= get(subject.getSubject_cd(), subject.getSchool());
 			if(old==null){
 				//科目が存在しなかった場合
 				//プリペアにINSERT文セットし新たな科目を作る
@@ -143,15 +139,16 @@ public class SubjectDao extends Dao{
 				//プリペアにバインド
 				statement.setString(1, subject.getSubject_cd());
 				statement.setString(2, subject.getName());
-				statement.setString(6, subject.getSchool().getCd());
+				statement.setString(3, subject.getSchool().getCd());
 			}else{
-				//科目が存在しなかった場合
+				//科目が存在した場合
 				//プリペアにUPDATE文セットし更新する
 				statement=connection.prepareStatement(
-						"update student set name=?, school_cd=? where subject_cd=? ");
+						"update subject set subject_cd=?, name=?, school_cd=? where subject_cd=? ");
 				//プリペアにバインド
+				statement.setString(1,subject.getSubject_cd());
 				statement.setString(2, subject.getName());
-				statement.setString(3, subject.getSchool());
+				statement.setString(3, subject.getSchool().getCd());
 
 			}
 			//プリペア実行
@@ -184,11 +181,52 @@ public class SubjectDao extends Dao{
 	}
 
 
+	//deleteメソッド
 	public boolean delete(Subject subject)throws Exception{
 		//falseを入れておく
-		return false;
+
+		//データベースへのコネクション
+		Connection connection =getConnection();
+		//プリペアードステートメント
+		PreparedStatement statement=null;
+		//実行件数
+		int count=0;
+		try{
+			//データベースから科目情報取得
+			Subject old= get(subject.getSubject_cd(), subject.getSchool());
+
+			//科目コードが?の科目を削除
+			statement=connection.prepareStatement(
+					"delete from subject where subject_cd=? values(?)");
+			//プリペアにバインド
+			statement.setString(1, subject.getSubject_cd());
+
+			//プリペア実行
+			count=statement.executeUpdate();
+		}catch(Exception e){
+			throw e;
+		}finally{
+			if(statement !=null){
+				try{
+					statement.close();
+				}catch(SQLException sqle){
+					throw sqle;
+				}
+			}
+			if(connection !=null){
+				try{
+					connection.close();
+				}catch(SQLException sqle){
+					throw sqle;
+				}
+			}
+		}
+		if(count>0){
+			//1件以上
+			return true;
+		}else{
+			//0の場合
+			return false;
+		}
 	}
-
-
-
 }
