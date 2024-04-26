@@ -10,6 +10,3 @@ public abstract class Action {
 		) throws Exception;
 
 }
-
-
-//うんこ

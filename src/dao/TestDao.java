@@ -1,3 +1,5 @@
+//4/26 未完成 delete saveの理解が必要
+
 package dao;
 
 import java.sql.Connection;
@@ -10,12 +12,13 @@ import java.util.List;
 import javax.security.auth.Subject;
 
 import bean.School;
+import bean.Student;
 import bean.Test;
 
 public class TestDao  extends Dao{
 
 
-	public Test get(String student,Subject subject, School school,int no) throws Exception {
+	public Test get(Student student,Subject subject, School school,int no) throws Exception {
 		//成績インスタンス初期化
 		Test test=new Test();
 		//データベースへのコネクション
