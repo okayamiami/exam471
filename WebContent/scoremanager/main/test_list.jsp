@@ -58,5 +58,48 @@
 		</div>
 	</form>
 
+	//コピペしただけ
+	<c:choose>
+		<c:when test="${students.size()>0}">
+			<div>検索結果：${students.size()}件</div>
+
+			<table class="table table-hover">
+				<tr>
+					<th>入学年度</th>
+					<th>学生番号</th>
+					<th>氏名</th>
+					<th>クラス</th>
+					<th class="text-center">在学中</th>
+					<th></th>
+					<th></th>
+				</tr>
+				<c:forEach var="student" items="${students}">
+					<tr>
+						<td>${student.entYear}</td>
+						<td>${student.student_no}</td>
+						<td>${student.name}</td>
+						<td>${student.classNum}</td>
+						<td class="text-center">
+							<%-- 在学フラグがたっている場合「○」それ以外は「×」を表示 --%>
+							<c:choose>
+								<c:when test="${student.isAttend()}">
+									○
+								</c:when>
+								<c:otherwise>
+									×
+								</c:otherwise>
+							</c:choose>
+						</td>
+						<td><a href="StudentUpdate.action?student_no=${student.student_no}">変更</a></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</c:when>
+		<c:otherwise>
+			<div>学生情報が存在しませんでした</div>
+		</c:otherwise>
+	</c:choose>
+
+
 </body>
 </html>
