@@ -5,10 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import bean.Subject;
-import bean.Teacher;
 import dao.SubjectDao;
 import tool.Action;
 
@@ -18,7 +16,7 @@ public class SubjectCreateExecuteAction extends Action{
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
 		//ローカル変数の宣言 1
-		HttpSession session = req.getSession();//セッション
+		//HttpSession session = req.getSession();//セッション
 		SubjectDao sbDao = new SubjectDao();//科目Dao
 		String subject_cd = "";//科目コード
 
@@ -26,7 +24,7 @@ public class SubjectCreateExecuteAction extends Action{
 
 		String subject_name = "";//科目名
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
-		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
+		//Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
 
 		//リクエストパラメータ―の取得 2
 		subject_cd = req.getParameter("subject_cd");//科目コード
@@ -49,23 +47,6 @@ public class SubjectCreateExecuteAction extends Action{
 		} else{//入力された学番がDBに保存されていた場合
 		errors.put("subject_cd", "科目コードが重複しています");
 		}
-
-
-		if (subject_cd == null) {// 科目名が未登録だった場合
-			// 科目インスタンスを初期化
-			subject = new Subject();
-			// インスタンスに値をセット
-			subject.setSubject_cd(subject_cd);
-			subject.setName(subject_name);
-
-			// 科目情報を保存
-			sbDao.save(subject);
-
-			} else{//入力された学番がDBに保存されていた場合
-			errors.put("subject_cd", "科目コードが重複しています");
-			}
-
-
 
 		//レスポンス値をセット 6
 		//JSPへフォワード 7
