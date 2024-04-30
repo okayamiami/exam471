@@ -36,7 +36,7 @@ public class SubjectCreateExecuteAction extends Action{
 		//DBへデータ保存 5
 		//条件で手順4~5の内容が分岐
 
-		if (subject == null) {// 科目が未登録だった場合
+		if (subject_cd == null) {// 科目コードが未登録だった場合
 		// 科目インスタンスを初期化
 		subject = new Subject();
 		// インスタンスに値をセット
@@ -49,6 +49,22 @@ public class SubjectCreateExecuteAction extends Action{
 		} else{//入力された学番がDBに保存されていた場合
 		errors.put("subject_cd", "科目コードが重複しています");
 		}
+
+
+		if (subject_cd == null) {// 科目名が未登録だった場合
+			// 科目インスタンスを初期化
+			subject = new Subject();
+			// インスタンスに値をセット
+			subject.setSubject_cd(subject_cd);
+			subject.setName(subject_name);
+
+			// 科目情報を保存
+			sbDao.save(subject);
+
+			} else{//入力された学番がDBに保存されていた場合
+			errors.put("subject_cd", "科目コードが重複しています");
+			}
+
 
 
 		//レスポンス値をセット 6
