@@ -46,13 +46,14 @@
 		</div>
 	</form>
 
-	<form method="post">
+	<form method="get">
 	<div>学生情報
 		<label>学生番号</label>
 			<%-- パラメーターf3が存在している場合checkedを追記 --%>
 			<input type="text" name="student_no" placeholder="学生番号を入力してください" maxlength="10" required  />
 
-			<button type=“button” onclick="TestList.action?student_no=${student_no}">検索</button>
+		<button>検索</button>
+
 		<div>${errors.get("f1")}</div>
 		</div>
 	</form>
