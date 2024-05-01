@@ -25,9 +25,9 @@ public class SubjectUpdateAction extends Action{
 		Map<String, String> errors = new HashMap<>();//エラーメッセージ
 
 		String subject_cd = req.getParameter("subject_cd");//科目コード
-		String school_cd = req.getParameter("school_cd");
+		//String school_cd = req.getParameter("school_cd");
 
-		Subject student = sbDao.get(subject_cd, school_cd);//科目コードから科目インスタンスを取得
+		Subject subject = sbDao.get(subject_cd);//科目コードから科目インスタンスを取得
 		List<Subject> list = sbDao.filter(teacher.getSchool());
 
 		//ビジネスロジック 4
@@ -37,8 +37,8 @@ public class SubjectUpdateAction extends Action{
 		//条件で手順4~6の内容が分岐
 		req.setAttribute("subject_", list);
 		if (list != null) {// 学生が存在していた場合
-			req.setAttribute("ent_year", student.getEntYear());
-			req.setAttribute("subject_name", subject_cd.get());
+			req.setAttribute("subject_cd", subject.getSubject_cd());
+			req.setAttribute("subject_name", subject.getName());
 		} else {// 科目が存在していなかった場合
 			errors.put("subject_cd", "科目が存在していません");
 			req.setAttribute("errors", errors);
