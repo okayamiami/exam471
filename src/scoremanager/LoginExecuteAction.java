@@ -21,8 +21,6 @@ public class LoginExecuteAction extends Action{
 		//リクエストパラメータ―の取得 2
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
-		String name = req.getParameter("namae");
-		String school_cd = req.getParameter("school_cd");
 
 		//DBからデータ取得 3
 		//なし
@@ -30,9 +28,7 @@ public class LoginExecuteAction extends Action{
 
 		teacher.setId(id);
 		teacher.setPassword(password);
-		teacher.setName(name);
 
-		school.setCd(school_cd);
 		school.setName("大宮校");
 
 		teacher.setSchool(school);//School型
