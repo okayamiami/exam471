@@ -25,9 +25,9 @@ public class SubjectUpdateAction extends Action{
 		Map<String, String> errors = new HashMap<>();//エラーメッセージ
 
 		String subject_cd = req.getParameter("subject_cd");//科目コード
-		//String school_cd = req.getParameter("school_cd");
+		String school_cd = req.getParameter("school_cd");//学校コード
 
-		Subject subject = sbDao.get(subject_cd);//科目コードから科目インスタンスを取得
+		Subject subject = sbDao.get(subject_cd, School school_cd());//科目コードから科目インスタンスを取得
 		List<Subject> list = sbDao.filter(teacher.getSchool());
 
 		//ビジネスロジック 4

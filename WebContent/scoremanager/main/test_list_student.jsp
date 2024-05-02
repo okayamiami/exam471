@@ -70,11 +70,11 @@
 					<th>点数</th>
 
 				</tr>
-				<c:forEach var="student" items="${tls_set}">
+				<c:forEach var="tls_set" items="${tls_set}">
 					<tr>
-						<td>${tls_set.subjectName}</td>
+						<td>${tls_set.name}</td>
 						<td>${tls_set.subject_cd}</td>
-						<td>${tls_set.num}</td>
+						<td>${tls_set.no}</td>
 						<td>${tls_set.point}</td>
 
 					</tr>

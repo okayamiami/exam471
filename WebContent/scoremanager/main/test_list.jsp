@@ -46,7 +46,7 @@
 		</div>
 	</form>
 
-	<form action="TestListStudent.action" method="post">
+	<form action="TestListStudentExecute.action" method="post">
 	<div>学生情報
 		<label>学生番号</label>
 			<%-- パラメーターf3が存在している場合checkedを追記 --%>
