@@ -34,16 +34,19 @@ public class TestListStudentExecuteAction extends Action {
 		}else{
 			student = sDao.get(student_no);// 学生番号から学生インスタンスを取得
 			List<TestListStudent> list = tlsDao.filter(student);// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
+			System.out.println("a10");
 			req.setAttribute("tls_set", list);//学生別のlistをセット
+			System.out.println("a11");
 		}
-
+		System.out.println("a12");
 		if(!errors.isEmpty()){
 			// リクエスト属性をセット
+			System.out.println("a13-1");
 			req.setAttribute("errors", errors);
 			req.getRequestDispatcher("test_list_student_error.jsp").forward(req, res);
 			return;
 		}
-
+		System.out.println("a13");
 		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 	}
 

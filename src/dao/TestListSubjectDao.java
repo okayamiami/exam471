@@ -12,6 +12,7 @@ import bean.Subject;
 import bean.TestListSubject;
 
 public class TestListSubjectDao extends Dao{
+
 	private String baseSql;
 
 	private List<TestListSubject> postFilter(ResultSet rSet)throws Exception{

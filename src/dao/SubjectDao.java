@@ -106,6 +106,22 @@ public class SubjectDao extends Dao{
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
 
+
+
+			while(rSet.next()){
+
+				Subject subject=new Subject();
+
+				subject.setSubject_cd(rSet.getString("subject_cd"));
+				subject.setName(rSet.getString("name"));
+				subject.setSchool(school);
+
+				subject.setSchool(school);
+
+				//リストにセットしていく
+				list.add(subject);
+
+			}
 		}catch(Exception e){
 			throw e;
 		}finally{
@@ -125,20 +141,6 @@ public class SubjectDao extends Dao{
 			}
 		}
 
-		while(rSet.next()){
-
-			Subject subject=new Subject();
-
-			subject.setSubject_cd(rSet.getString("subject_cd"));
-			subject.setName(rSet.getString("name"));
-			subject.setSchool(school);
-
-			subject.setSchool(school);
-
-			//リストにセットしていく
-			list.add(subject);
-
-	}
 		return list;
 	}
 

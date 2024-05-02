@@ -3,29 +3,29 @@ package bean;
 import java.io.Serializable;
 
 public class TestListStudent implements Serializable{
-	private String subjectName;
-	private String subject_Cd;
-	private int num;
+	private String name;
+	private String subject_cd;
+	private int no;
 	private int point;
 
 
-	public String getSubjectName() {
-		return subjectName;
+	public String getName() {
+		return name;
 	}
-	public void setSubjectName(String subjectName) {
-		this.subjectName = subjectName;
+	public void setName(String name) {
+		this.name = name;
 	}
-	public String getSubject_Cd() {
-		return subject_Cd;
+	public String getsubject_cd() {
+		return subject_cd;
 	}
-	public void setSubject_Cd(String subject_Cd) {
-		this.subject_Cd = subject_Cd;
+	public void setSubject_cd(String subject_cd) {
+		this.subject_cd = subject_cd;
 	}
-	public int getNum() {
-		return num;
+	public int getNo() {
+		return no;
 	}
-	public void setNum(int num) {
-		this.num = num;
+	public void setNo(int no) {
+		this.no = no;
 	}
 	public int getPoint() {
 		return point;
