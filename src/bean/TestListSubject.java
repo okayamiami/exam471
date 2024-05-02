@@ -61,8 +61,9 @@ public class TestListSubject implements Serializable{
 			return k.toString();
 		}
 	}
-	public void putPoint(int key,int value){
+	public Map<Integer,Integer> putPoint(int key,int value){
 		points.put(key, value);
+		return points;
 	}
 
 }
