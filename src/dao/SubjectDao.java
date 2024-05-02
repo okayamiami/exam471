@@ -32,7 +32,7 @@ public class SubjectDao extends Dao{
 			//プリペアードステートメント実行
 			ResultSet rSet=statement.executeQuery();
 			//科目DAO初期化
-			SubjectDao subjectDao= new SubjectDao();
+			//SubjectDao subjectDao= new SubjectDao();
 
 			if(rSet.next()){
 				//リザルトセットが存在する場合
@@ -83,22 +83,29 @@ public class SubjectDao extends Dao{
 		//リザルトセット
 		ResultSet rSet=null;
 		//SQL文の条件を新規に作成
-		String sql="select * from subject where SCHOOL_CD=? and SUBJECT_CD=? and NAME=? ";
+		String sql="select * from subject where SCHOOL_CD=? ";
+
 		//SQL文のソート
-		String sqls="order by SUBJECT_CD asc ";
+		//String sqls="order by SUBJECT_CD asc ";
+
 
 
 		try{
 			//プリペアードステートメントにSQLセット
-			statement=connection.prepareStatement(sql+sqls);
+			statement=connection.prepareStatement(sql);
+
 			//プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
+
 			//プリペアードステートメントに入学年度をバインド
-			statement.setString(2, rSet.getString("subject_cd"));
+			//statement.setString(2, rSet.getString("subject_cd"));
+
 			//プリペアードステートメントにクラス番号をバインド
-			statement.setString(3, rSet.getString("name"));
+			//statement.setString(3, rSet.getString("name"));
+
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
+
 		}catch(Exception e){
 			throw e;
 		}finally{
@@ -117,6 +124,7 @@ public class SubjectDao extends Dao{
 				}
 			}
 		}
+
 		return list;
 	}
 
