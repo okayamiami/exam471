@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import bean.Teacher;
-import dao.TeacherDAO;
+import dao.TeacherDao;
 import tool.Action;
 
 public class LoginAction extends Action{
@@ -24,20 +24,20 @@ public class LoginAction extends Action{
 		String password=req.getParameter("password");
 
 		//データベースからデータ検索
-		TeacherDAO dao=new TeacherDAO();
-		Teacher teacher=dao.search(login, password);
+		TeacherDao dao=new TeacherDao();
+		Teacher teacher=dao.login(login, password);
 
 		//ある場合
 		if (teacher!=null) {
 			session.setAttribute("teacher", teacher);
-			return "login.jsp";
+			req.getRequestDispatcher("login.jsp").forward(req, res);
 		}
 		//ない場合
-		return "error.jsp";
+		req.getRequestDispatcher("error.jsp").forward(req, res);
 	}
+
+
+
+
 }
 
-		req.getRequestDispatcher("login.jsp").forward(req, res);
-
-	}
-}
