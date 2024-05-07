@@ -21,7 +21,11 @@ public class TestDao extends Dao{
 	 */
 //	private String baseSql = "select * from test where school_cd=? ";
 //	private String baseSql = "select student.no, ent_year, test.subject_cd, student.name, test.no, student.class_num, test.point from student left outer join test on student.no = test.student_no ";
+<<<<<<< HEAD
 	private String baseSql = "SELECT STUDENT.ENT_YEAR , STUDENT.CLASS_NUM ,STUDENT.STUDENT_NO , STUDENT.NAME , TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD  ) ON STUDENT.NO = TEST.STUDENT_NO ";
+=======
+	private String baseSql = "SELECT STUDENT.ENT_YEAR , STUDENT.CLASS_NUM ,STUDENT.STUDENT_NO , STUDENT.NAME , TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.SUBJECT_CD  ) ON STUDENT.STUDENT_NO = TEST.STUDENT_NO ";
+>>>>>>> branch 'master' of https://github.com/okayamiami/exam471.git
 	/**
 	 * getメソッド
 	 *
@@ -107,6 +111,13 @@ public class TestDao extends Dao{
 		List<Test> list = new ArrayList<>();
 		try {
 			StudentDao studentDao = new StudentDao();
+<<<<<<< HEAD
+=======
+
+			// テストインスタンスを初期化
+			Test test = new Test();
+			//Subject subject = new Subject();
+>>>>>>> branch 'master' of https://github.com/okayamiami/exam471.git
 
 			// リザルトセットを全件走査
 			while(rSet.next()) {
@@ -118,7 +129,11 @@ public class TestDao extends Dao{
 
 				// テストインスタンスに検索結果をセット
 				test.setClassNum(rSet.getString("class_num"));
+<<<<<<< HEAD
 				test.setSubject(subject);
+=======
+				//test.setSubject(rSet.getsubject);
+>>>>>>> branch 'master' of https://github.com/okayamiami/exam471.git
 				test.setNo(rSet.getInt("no"));
 				test.setPoint(rSet.getInt("point"));
 				test.setStudent(studentDao.get(rSet.getString("ent_year")));
@@ -165,7 +180,7 @@ public class TestDao extends Dao{
 		ResultSet rSet = null;
 		System.out.println("5");
 		// SQL文の条件
-		String condition = "where student.school_cd=? and ent_year=? and student.class_num=? and subject.cd=? and test.no=? ";
+		String condition = "where student.school_cd=? and ent_year=? and student.class_num=? and subject.subject_cd=? and test.no=? ";
 
 		// SQL文のソート
 		String order = "order by no asc";

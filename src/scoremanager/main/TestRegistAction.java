@@ -16,7 +16,6 @@ import bean.Test;
 import dao.ClassNumDao;
 import dao.SubjectDao;
 import dao.TestDao;
-import dao.TestListStudentDao;
 import tool.Action;
 
 public class TestRegistAction extends Action {
@@ -40,7 +39,7 @@ public class TestRegistAction extends Action {
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
 		int year = todaysDate.getYear();// 現在の年を取得
 		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
-		TestListStudentDao tlsDao = new TestListStudentDao();
+
 		SubjectDao subDao = new SubjectDao();// 科目Daoを初期化
 		TestDao tDao = new TestDao();// テストDaoを初期化
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
@@ -141,7 +140,7 @@ public class TestRegistAction extends Action {
 
 
 
-	private void setRequestData(HttpServletRequest req, HttpServletResponse res) {
+	//private void setRequestData(HttpServletRequest req, HttpServletResponse res) {
 
-	}
+	//}
 }
