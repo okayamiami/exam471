@@ -40,11 +40,11 @@ public class SubjectDeleteExecuteAction extends Action{
 
 			return;
 
-		} else{//入力された学番がDBに保存されていた場合
+		} else{//入力された科目がDBに保存されていた場合
 
 			// 科目インスタンスを初期化
 			subject = new Subject();
-			// 科目情報を保存
+			// 科目情報を削除
 			sbDao.delete(subject);
 		}
 
@@ -52,13 +52,12 @@ public class SubjectDeleteExecuteAction extends Action{
 		//JSPへフォワード 7
 
 		//System.out.println("3-2");
-		if(!errors.isEmpty()){
-			// リクエスト属性をセット
-			req.setAttribute("errors", errors);
-			req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
-
-			return;
-		}
+		//if(!errors.isEmpty()){
+		//	// リクエスト属性をセット
+		//	req.setAttribute("errors", errors);
+		//	req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
+		//	return;
+		//}
 		req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);
 
 	}

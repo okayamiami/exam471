@@ -14,8 +14,11 @@
 
 	<form action = "StudentDeleteExecute.action" method="post">
 
-		<p>「<input type="hidden" name="subject_name" value="${subject_name}">」を削除してもよろしいですか？</p>
 
+					<tr>
+						<td>${subject.name}</td>
+						<p>を削除してもよろしいですか？</p>
+					</tr>
 
 		<input type="submit" value="削除">
 	</form>

@@ -35,9 +35,10 @@ public class SubjectListAction extends Action{
 		//なし
 		//レスポンス値をセット 6
 		// リクエストにデータをセット
-		req.setAttribute("subject_list", list);
+		req.setAttribute("sblist", list);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("subject_list.jsp").forward(req, res);
+		System.out.println("222");
 
 	}
 
