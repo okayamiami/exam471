@@ -108,12 +108,13 @@ public class TestDao extends Dao{
 		try {
 			StudentDao studentDao = new StudentDao();
 
-			// テストインスタンスを初期化
-			Test test = new Test();
-			Subject subject = new Subject();
-
 			// リザルトセットを全件走査
 			while(rSet.next()) {
+
+				// テストインスタンスを初期化
+				Test test = new Test();
+				Subject subject = new Subject();
+
 
 				// テストインスタンスに検索結果をセット
 				test.setClassNum(rSet.getString("class_num"));
