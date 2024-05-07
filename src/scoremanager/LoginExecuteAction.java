@@ -17,13 +17,16 @@ public class LoginExecuteAction extends Action{
 
 		Teacher teacher = new Teacher();
 		School school = new School();
+		//TeacherDao tDao = new TeacherDao();
 
 		//リクエストパラメータ―の取得 2
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
 
 		//DBからデータ取得 3
-		//なし
+
+		//List<Student>=tDao.login(id,password);
+
 		//ビジネスロジック 4
 
 		teacher.setId(id);
@@ -32,6 +35,7 @@ public class LoginExecuteAction extends Action{
 		school.setName("大宮校");
 
 		teacher.setSchool(school);//School型
+
 
 		// 認証済みフラグを立てる
 		teacher.setAuthenticated(true);
