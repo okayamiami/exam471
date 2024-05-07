@@ -24,11 +24,11 @@
 
 	<!-- ＩＤ -->
 	<label>ＩＤ</label>
-	<input type="text" name="id" maxlength="20"value="admin"><br>
+	<input type="text" name="id" maxlength="20" required="True"><br>
 
 	<!-- パスワード -->
 	<label>パスワード</label>
-	<input type="password" name="password" value="password"><br>
+	<input type="password" name="password"  required="True"><br>
 
 	<!-- 名前
 	<label>名前</label>

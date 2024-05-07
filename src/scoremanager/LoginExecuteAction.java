@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import bean.School;
 import bean.Teacher;
+import dao.TeacherDao;
 import tool.Action;
 
 public class LoginExecuteAction extends Action{
@@ -17,7 +18,7 @@ public class LoginExecuteAction extends Action{
 
 		Teacher teacher = new Teacher();
 		School school = new School();
-		//TeacherDao tDao = new TeacherDao();
+		TeacherDao tDao = new TeacherDao();
 
 		//リクエストパラメータ―の取得 2
 		String id = req.getParameter("id");
@@ -25,14 +26,14 @@ public class LoginExecuteAction extends Action{
 
 		//DBからデータ取得 3
 
-		//List<Student>=tDao.login(id,password);
+		teacher=tDao.login(id,password);
 
 		//ビジネスロジック 4
 
 		teacher.setId(id);
 		teacher.setPassword(password);
 
-		school.setName("大宮校");
+		//school.setName("大宮校");
 
 		teacher.setSchool(school);//School型
 

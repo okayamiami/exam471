@@ -75,7 +75,7 @@ public class TeacherDao extends Dao{
 
 		try{
 			//prepareにsql文セット
-			statement=connection.prepareStatement("select * from teacher where id=?,password=? ");
+			statement=connection.prepareStatement("select * from teacher where id=? and password=? ");
 			//バインド
 			statement.setString(1, id);
 			statement.setString(2, password);
