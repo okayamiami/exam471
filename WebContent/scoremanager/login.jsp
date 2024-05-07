@@ -12,37 +12,34 @@
 
 <!--
 	autocomplete
-	on/off:自動補完の制御
+	on/off: 自動保管の制御
 
 	ime-mode
 	active:漢字（全角）モードにします
-	disabled:日本語入力機能(IME)そのものを使用不可能
+	disabled:日本語入力機能
 
-	required:input要素を入力必須にする属性
- -->
- 	<h2>ログイン</h2>
+	required:input入力を必須にする
 
-	<!-- ＩＤ -->
-	<label>ＩＤ</label>
-	<input type="text" name="id" maxlength="20" required="True"><br>
+-->
+
+	<!-- ID -->
+<label>ID</label>
+<input type="text" name="id" maxlength="20" placeholder="20文字以内の半角英数字"
+	value="admin"
+>
 
 	<!-- パスワード -->
-	<label>パスワード</label>
-	<input type="password" name="password"  required="True"><br>
+<label>パスワード</label>
+<input type="password" name="password" value="password">
 
-	<!-- 名前
-	<label>名前</label>
-	<input type="text" name="namae" value="大原 門左衛門">
+	<!-- 名前 -->
+<label>名前</label>
+<input type="text" name="name" value="大原　門左衛門">
 
-	     学校コード
-	<label>学校コード</label>
-	<input type="text" name="school_cd" value="knz">
- -->
+	<!-- 学校コード -->
+<label>学校コード</label>
+<input type="text" name="school_cd" value="knz">
 
- 	<!-- チェックボックス -->
- 	<label><input type="checkbox" name="mail">パスワードを表示</label><br>
-
-	<!-- ログイン用ボタン -->
 	<input type="submit" name="login" value="ログイン"/>
 
 </form>
