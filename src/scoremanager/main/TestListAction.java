@@ -37,7 +37,7 @@ public class TestListAction extends Action{
 		classNum = req.getParameter("f2");
 		subject = req.getParameter("f3");
 		List<String> clist = cNumDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-		System.out.println("3");
+		//System.out.println("3");
 		List<Subject> sublist = subDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとに科目の一覧を取得
 
 		if (entYearStr != null) {
