@@ -21,7 +21,7 @@ public class TestDao extends Dao{
 	 */
 //	private String baseSql = "select * from test where school_cd=? ";
 //	private String baseSql = "select student.no, ent_year, test.subject_cd, student.name, test.no, student.class_num, test.point from student left outer join test on student.no = test.student_no ";
-	private String baseSql = "SELECT STUDENT.ENT_YEAR , STUDENT.CLASS_NUM ,STUDENT.NO , STUDENT.NAME , TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD  ) ON STUDENT.NO = TEST.STUDENT_NO ";
+	private String baseSql = "SELECT STUDENT.ENT_YEAR , STUDENT.CLASS_NUM ,STUDENT.STUDENT_NO , STUDENT.NAME , TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD  ) ON STUDENT.NO = TEST.STUDENT_NO ";
 	/**
 	 * getメソッド
 	 *
@@ -107,7 +107,7 @@ public class TestDao extends Dao{
 		List<Test> list = new ArrayList<>();
 		try {
 			StudentDao studentDao = new StudentDao();
-			
+
 			// テストインスタンスを初期化
 			Test test = new Test();
 			Subject subject = new Subject();
@@ -117,7 +117,7 @@ public class TestDao extends Dao{
 
 				// テストインスタンスに検索結果をセット
 				test.setClassNum(rSet.getString("class_num"));
-				//test.setSubject(subject);
+				test.setSubject(subject);
 				test.setNo(rSet.getInt("no"));
 				test.setPoint(rSet.getInt("point"));
 				test.setStudent(studentDao.get(rSet.getString("ent_year")));
@@ -187,7 +187,7 @@ public class TestDao extends Dao{
 //			System.out.println("6-6");
 //			// プリペアードステートメントに科目をバインド
 //			System.out.println("6-1");
-			statement.setString(4, subject.getCd());
+			statement.setString(4, subject.getSubject_cd());
 			statement.setInt(5, num);
 			System.out.println(num);
 

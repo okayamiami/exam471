@@ -79,7 +79,7 @@ public class TestRegistAction extends Action {
 //			point = Integer.parseInt(pointStr);
 //		}
 
-		subject.setCd(subjectStr);
+		subject.setSubject_cd(subjectStr);
 
 		System.out.println("2-4");
 		if (entYear != 0 && !classNum.equals("0") && !subject.equals("0")&& num != 0) {
@@ -118,7 +118,6 @@ public class TestRegistAction extends Action {
 
 
 		if (subjectStr != null){
-		subject = subDao.get(subjectStr);
 		String subjectName = subject.getName();
 		req.setAttribute("subjectName", subjectName);
 		req.setAttribute("f3", subjectName);
