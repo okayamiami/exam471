@@ -21,7 +21,7 @@ public class TestDao extends Dao{
 	 */
 //	private String baseSql = "select * from test where school_cd=? ";
 //	private String baseSql = "select student.no, ent_year, test.subject_cd, student.name, test.no, student.class_num, test.point from student left outer join test on student.no = test.student_no ";
-	private String baseSql = "SELECT STUDENT.ENT_YEAR , STUDENT.CLASS_NUM ,STUDENT.NO , STUDENT.NAME , TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.CD  ) ON STUDENT.NO = TEST.STUDENT_NO ";
+	private String baseSql = "SELECT STUDENT.ENT_YEAR , STUDENT.CLASS_NUM ,STUDENT.STUDENT_NO , STUDENT.NAME , TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.SUBJECT_CD  ) ON STUDENT.STUDENT_NO = TEST.STUDENT_NO ";
 	/**
 	 * getメソッド
 	 *
@@ -164,7 +164,7 @@ public class TestDao extends Dao{
 		ResultSet rSet = null;
 		System.out.println("5");
 		// SQL文の条件
-		String condition = "where student.school_cd=? and ent_year=? and student.class_num=? and subject.cd=? and test.no=? ";
+		String condition = "where student.school_cd=? and ent_year=? and student.class_num=? and subject.subject_cd=? and test.no=? ";
 
 		// SQL文のソート
 		String order = "order by no asc";
