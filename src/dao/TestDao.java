@@ -107,17 +107,17 @@ public class TestDao extends Dao{
 		List<Test> list = new ArrayList<>();
 		try {
 			StudentDao studentDao = new StudentDao();
-			
+
 			// テストインスタンスを初期化
 			Test test = new Test();
-			Subject subject = new Subject();
+			//Subject subject = new Subject();
 
 			// リザルトセットを全件走査
 			while(rSet.next()) {
 
 				// テストインスタンスに検索結果をセット
 				test.setClassNum(rSet.getString("class_num"));
-				//test.setSubject(subject);
+				//test.setSubject(rSet.getsubject);
 				test.setNo(rSet.getInt("no"));
 				test.setPoint(rSet.getInt("point"));
 				test.setStudent(studentDao.get(rSet.getString("ent_year")));
@@ -187,7 +187,7 @@ public class TestDao extends Dao{
 //			System.out.println("6-6");
 //			// プリペアードステートメントに科目をバインド
 //			System.out.println("6-1");
-			statement.setString(4, subject.getCd());
+			statement.setString(4, subject.getSubject_cd());
 			statement.setInt(5, num);
 			System.out.println(num);
 
