@@ -27,15 +27,16 @@ public class TestListStudentExecuteAction extends Action {
 
 		//DBからデータ取得 3
 
-
-		if (student_no == null) {// 学生番号が入力されていない場合
-			errors.put("student_no", "学生番号を入力してください");
+		//↓これいらない
+		if (sDao.get(student_no)==null) {// 学生番号が入力されていない場合
+			errors.put("student", "学生情報が存在しませんでした");
 
 		}else{
 			student = sDao.get(student_no);// 学生番号から学生インスタンスを取得
 			List<TestListStudent> list = tlsDao.filter(student);// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 			System.out.println("a10");
 			req.setAttribute("tls_set", list);//学生別のlistをセット
+			req.setAttribute("student", student);//学生別のlistをセット
 			System.out.println("a11");
 		}
 		System.out.println("a12");
@@ -43,7 +44,7 @@ public class TestListStudentExecuteAction extends Action {
 			// リクエスト属性をセット
 			System.out.println("a13-1");
 			req.setAttribute("errors", errors);
-			req.getRequestDispatcher("test_list_student_error.jsp").forward(req, res);
+			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 			return;
 		}
 		System.out.println("a13");

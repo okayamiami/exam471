@@ -10,7 +10,7 @@
 <body>
 <h2>成績参照</h2>
 
-	<form method="get">
+	<form action="TestListSubject.action" method="post">
 	<div>科目情報
 		<label>入学年度 </label>
 		<select name="f1">
@@ -46,7 +46,7 @@
 		</div>
 	</form>
 
-	<form method="get">
+	<form action="TestListStudentExecute.action" method="post">
 	<div>学生情報
 		<label>学生番号</label>
 			<%-- パラメーターf3が存在している場合checkedを追記 --%>
@@ -60,7 +60,7 @@
 
 	<c:choose>
 		<c:when test="${tls_set.size()>0}">
-			<div>検索結果：${tls_set.size()}件</div>
+			<div>氏名：${student.name}(${student.student_no})</div>
 
 			<table class="table table-hover">
 				<tr>
