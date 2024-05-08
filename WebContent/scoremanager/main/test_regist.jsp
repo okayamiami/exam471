@@ -1,4 +1,3 @@
-<%-- 成績一覧JSP 4/25更新 --%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -31,7 +30,6 @@
 			</c:forEach>
 		</select>
 
-		<%--★以下更新箇所 --%>
 		<label>科目</label>
 		<select name="f3">
 			<option value="0">--------</option>
@@ -82,7 +80,6 @@
 							value="${point}" required />
 						<div>${errors.get("point")}</div>
 
-						<td><a href="StudentUpdate.action?student_no=${student.student_no}">変更</a></td>
 					</tr>
 				</c:forEach>
 			</table>
