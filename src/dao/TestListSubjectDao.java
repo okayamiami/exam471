@@ -13,7 +13,7 @@ import bean.TestListSubject;
 
 public class TestListSubjectDao extends Dao{
 
-	private String baseSql = "select student.student_no, ent_year, test.subject_cd, student.name, test.no, student.class_num, test.point from student left outer join test on student.student_no = test.student_no where test.point is not null";
+	private String baseSql = "select student.student_no, ent_year, test.subject_cd, student.name, test.no, student.class_num, test.point from student left outer join test on student.student_no = test.student_no where test.point is not null and test.subject_cd = ? ";
 //SELECT distinct STUDENT.ENT_YEAR , SUBJECT.SUBJECT_CD,STUDENT.CLASS_NUM ,STUDENT.STUDENT_NO , STUDENT.NAME , TEST.NO,TEST.POINT  FROM STUDENT LEFT OUTER JOIN (TEST INNER JOIN  SUBJECT ON TEST.SUBJECT_CD = SUBJECT.SUBJECT_CD  ) ON STUDENT.STUDENT_NO = TEST.STUDENT_NO
 	//where test.point is not null
 
@@ -55,7 +55,7 @@ public class TestListSubjectDao extends Dao{
 		try{
 			//プリペアードステートメントにSQLセット
 			statement=connection.prepareStatement(baseSql);
-
+			statement.setString(1, subject.getSubject_cd());
 			//プレースホルダー未完　statement.setString(1, );
 
 			//プリペアードステートメントを実行

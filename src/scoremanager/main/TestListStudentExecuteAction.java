@@ -79,7 +79,7 @@ public class TestListStudentExecuteAction extends Action {
 			req.setAttribute("f2", classNum);
 			req.setAttribute("f3",subject);
 			req.setAttribute("class_num_set", clist);//クラス番号のlistをセット
-			req.setAttribute("subjet_set", sublist);//のlistをセット
+			req.setAttribute("subject_set", sublist);//のlistをセット
 			req.setAttribute("ent_year_set", entYearSet);
 			System.out.println("a11");
 		}

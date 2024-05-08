@@ -10,7 +10,7 @@
 <body>
 <h2>成績参照</h2>
 
-	<form action="TestListSubject.action" method="post">
+	<form action="TestListSubjectExecute.action" method="post">
 	<div>科目情報
 		<label>入学年度 </label>
 		<select name="f1">
@@ -35,7 +35,7 @@
 			<option value="0">--------</option>
 			<c:forEach var="sub" items="${subject_set}">
 				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
-				<option value="${sub}" <c:if test="${sub==f3}">selected</c:if>>${sub}</option>
+				<option value="${sub.subject_cd}" <c:if test="${sub==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
 

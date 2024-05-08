@@ -46,6 +46,7 @@ public class TestListAction extends Action{
 		}
 
 		System.out.println("4");
+
 		for (int i = year - 10; i < year + 10; i++) {
 			entYearSet.add(i);
 		}// 現在を起点に前後10年をリストに追加
@@ -56,7 +57,7 @@ public class TestListAction extends Action{
 		req.setAttribute("f3",subject);
 		System.out.println("5");
 		req.setAttribute("class_num_set", clist);//クラス番号のlistをセット
-		req.setAttribute("subjet_set", sublist);//のlistをセット
+		req.setAttribute("subject_set", sublist);//のlistをセット
 		req.setAttribute("ent_year_set", entYearSet);
 		System.out.println("6");
 		req.getRequestDispatcher("test_list.jsp").forward(req, res);

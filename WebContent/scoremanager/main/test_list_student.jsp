@@ -35,7 +35,7 @@
 			<option value="0">--------</option>
 			<c:forEach var="sub" items="${subject_set}">
 				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
-				<option value="${sub}" <c:if test="${sub==f3}">selected</c:if>>${sub}</option>
+				<option value="${sub.name}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
 
@@ -76,6 +76,33 @@
 						<td>${tls_set.subject_cd}</td>
 						<td>${tls_set.no}</td>
 						<td>${tls_set.point}</td>
+
+					</tr>
+				</c:forEach>
+			</table>
+		</c:when>
+		<c:when test="${tlsub_set.size()>0}">
+			<div>科目名：${f3}</div>
+
+			<table class="table table-hover">
+				<tr>
+					<th>入学年度</th>
+					<th>クラス</th>
+					<th>学生番号</th>
+					<th>氏名</th>
+					<th>1回</th>
+					<th>2回</th>
+
+
+				</tr>
+				<c:forEach var="tlsub_set" items="${tlsub_set}">
+					<tr>
+						<td>${f1}</td>
+						<td>${tlsub_set.class_num}</td>
+						<td>${tlsub_set.student_no}</td>
+						<td>${tlsub_set.student_name}</td>
+						<td>${tlsub_set.getPoint(1)}</td>
+						<td>${tlsub_set.getPoint(2)}</td>
 
 					</tr>
 				</c:forEach>
