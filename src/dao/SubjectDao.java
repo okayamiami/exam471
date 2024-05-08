@@ -186,11 +186,11 @@ public class SubjectDao extends Dao{
 				//科目が存在しなかった場合
 				//プリペアにINSERT文セットし新たな科目を作る
 				statement=connection.prepareStatement(
-						"insert into subject(subject_cd,name,school_cd) values(?,?)");
+						"insert into subject(subject_cd,name,school_cd) values(?,?,?)");
 				//プリペアにバインド
 				statement.setString(1, subject.getSubject_cd());
 				statement.setString(2, subject.getName());
-			  //statement.setString(3, subject.getSchool().getCd());
+				statement.setString(3, subject.getSchool().getCd());
 			}else{
 				//科目が存在した場合
 				//プリペアにUPDATE文セットし更新する
@@ -199,7 +199,7 @@ public class SubjectDao extends Dao{
 				//プリペアにバインド
 				statement.setString(1,subject.getSubject_cd());
 				statement.setString(2, subject.getName());
-				//statement.setString(3, subject.getSchool().getCd());
+				statement.setString(3, subject.getSchool().getCd());
 
 			}
 			//プリペア実行

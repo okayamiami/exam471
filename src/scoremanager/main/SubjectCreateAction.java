@@ -37,9 +37,8 @@ public class SubjectCreateAction extends Action{
 		// リクエストにデータをセット
 		req.setAttribute("sblist", list);
 
-		System.out.println("create0");
+
 		req.getRequestDispatcher("subject_create.jsp").forward(req, res);
-		System.out.println("***");
 
 	}
 

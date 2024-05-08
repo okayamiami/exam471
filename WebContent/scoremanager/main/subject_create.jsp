@@ -11,7 +11,7 @@
 <body>
 	<h2>科目情報 新規登録</h2>
 
-	<form action = "StudentCreateExecute.action" method="post">
+	<form action = "SubjectCreateExecute.action" method="post">
 
 		<label>科目コード</label>
 		<input type="text" name="subject_cd"
@@ -19,9 +19,9 @@
 		<div>${errors.get("subject_cd")}</div>
 
 		<label>科目名</label>
-		<input type="text" name="name"
-			placeholder="科目名を入力してください" maxlength="10" value="${name}" required />
-		<div>${errors.get("name")}</div>
+		<input type="text" name="subject_name"
+			placeholder="科目名を入力してください" maxlength="10" value="${subject_name}" />
+		<div>${errors.get("subject_name")}</div>
 
 
 		<input type="submit" value="登録">
