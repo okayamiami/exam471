@@ -74,12 +74,14 @@
 						<td>${student.name}</td>
 						<td>${student.point}</td>
 
+						<td>
 						<label>点数</label>
 						<input type="text"
 							name="point" placeholder="点数を変更" maxlength="3"
 							value="${point}" required />
 						<div>${errors.get("point")}</div>
 
+						</td>
 					</tr>
 				</c:forEach>
 			</table>
