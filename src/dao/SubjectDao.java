@@ -71,7 +71,6 @@ public class SubjectDao extends Dao{
 
 
 	private List<Subject> postFilter(ResultSet rSet, School school) throws Exception {
-		System.out.println("post");
 		//空のリスト作成
 		List<Subject>list=new ArrayList<>();
 		try{
@@ -80,18 +79,13 @@ public class SubjectDao extends Dao{
 				//科目インスタンス初期化
 				//科目情報をセットしていく
 
-				System.out.println("post2");
 				Subject subject=new Subject();
-
-				System.out.println("fff");
 				subject.setSubject_cd(rSet.getString("subject_cd"));
 				subject.setName(rSet.getString("name"));
 				subject.setSchool(school);
-				System.out.println("ggg");
-				System.out.println("post3");
 				//リストにセットしていく
 				list.add(subject);
-				System.out.println("post4");
+
 			}
 		}catch(SQLException |NullPointerException e){
 			e.printStackTrace();
@@ -105,14 +99,13 @@ public class SubjectDao extends Dao{
 	//filterメソッド
 	public List<Subject> filter(School school) throws Exception {
 
-		System.out.println("aaa");
 		//戻り値用のリストを作成
 		//new演算子とArrayListで空のListを用意
 		List<Subject> list = new ArrayList<>();
 
 		//データベースへのコネクション
 		Connection connection=getConnection();
-		System.out.println("bbb");
+
 		//プリペアードステートメント
 		PreparedStatement statement=null;
 		//リザルトセット
@@ -131,22 +124,6 @@ public class SubjectDao extends Dao{
 
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
-
-			//プリペアードステートメントに科目CDをバインド
-			//statement.setString(1, rSet.getString("subject_cd"));
-
-			//プリペアードステートメントにクラス番号をバインド
-			//statement.setString(3, rSet.getString("name"));
-			//while(rSet.next()){
-			//	Subject subject=new Subject();
-			//  System.out.println("fff");
-			//	subject.setSubject_cd(rSet.getString("subject_cd"));
-			//	subject.setName(rSet.getString("name"));
-			//	subject.setSchool(school);
-			//	System.out.println("ggg");
-				//リストにセットしていく
-			//	list.add(subject);
-			//}
 
 			list=postFilter(rSet,school);
 		}catch(Exception e){
@@ -185,6 +162,7 @@ public class SubjectDao extends Dao{
 			if(old==null){
 				//科目が存在しなかった場合
 				//プリペアにINSERT文セットし新たな科目を作る
+				System.out.println("insert1");
 				statement=connection.prepareStatement(
 						"insert into subject(subject_cd,name,school_cd) values(?,?,?)");
 				//プリペアにバインド
@@ -194,12 +172,14 @@ public class SubjectDao extends Dao{
 			}else{
 				//科目が存在した場合
 				//プリペアにUPDATE文セットし更新する
+				System.out.println("update開始");
 				statement=connection.prepareStatement(
-						"update subject set subject_cd=?, name=?, where subject_cd=? ");
+						"update subject set subject_cd=?, name=?, school_cd=? where subject_cd=?");
 				//プリペアにバインド
 				statement.setString(1,subject.getSubject_cd());
 				statement.setString(2, subject.getName());
 				statement.setString(3, subject.getSchool().getCd());
+				System.out.println("update完了");
 
 			}
 			//プリペア実行

@@ -9,21 +9,23 @@
 <title>得点管理システム</title>
 </head>
 <body>
-	<h2>学生情報変更</h2>
+	<h2>科目情報変更</h2>
 	<form action = "SubjectUpdateExecute.action" method="post">
+
 		<label>科目コード</label><br>
-		<input type="hidden" name="subject_cd" value="${subject_cd}">
-		${subject_cd}<br>
+		<input type="hidden" name="subject_cd" value="${subject.subject_cd}">
+		${subject.subject_cd}<br>
+
 		<label>科目名</label>
 		<input type="text" name="subject_name" placeholder="科目名を入力してください"
-			maxlength="10" value="${subject_name}" required />
+			maxlength="10" required />
 		<div>${errors.get("subject_name")}</div>
 
 		<input type="submit" value="変更">
 
 	</form>
 
-	<a href="StudentList.action">戻る</a>
+	<a href="SubjectList.action">戻る</a>
 
 </body>
 </html>

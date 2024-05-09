@@ -38,7 +38,6 @@ public class SubjectListAction extends Action{
 		req.setAttribute("sblist", list);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("subject_list.jsp").forward(req, res);
-		System.out.println("222");
 
 	}
 

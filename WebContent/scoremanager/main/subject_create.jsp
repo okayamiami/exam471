@@ -20,7 +20,7 @@
 
 		<label>科目名</label>
 		<input type="text" name="subject_name"
-			placeholder="科目名を入力してください" maxlength="10" value="${subject_name}" />
+			placeholder="科目名を入力してください" maxlength="10" value="${subject_name}" required/>
 		<div>${errors.get("subject_name")}</div>
 
 

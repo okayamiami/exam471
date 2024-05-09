@@ -23,7 +23,7 @@ public class SubjectCreateExecuteAction extends Action{
 		SubjectDao sbDao = new SubjectDao();//科目Dao
 		String subject_cd = "";//科目コード
 		Subject subject = null;
-		String name = "";//科目名
+		String subject_name = "";//科目名
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
 		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
 
@@ -34,7 +34,7 @@ public class SubjectCreateExecuteAction extends Action{
 
 		//リクエストパラメータ―の取得 2
 		subject_cd = req.getParameter("subject_cd");//科目コード
-		name = req.getParameter("name");//科目名
+		subject_name = req.getParameter("subject_name");//科目名
 
 
 		//ビジネスロジック 4
@@ -47,7 +47,7 @@ public class SubjectCreateExecuteAction extends Action{
 		subject = new Subject();
 		// インスタンスに値をセット
 		subject.setSubject_cd(subject_cd);
-		subject.setName(name);
+		subject.setName(subject_name);
 		subject.setSchool(((Teacher)session.getAttribute("user")).getSchool());
 		// 科目情報を保存
 		sbDao.save(subject);
@@ -66,7 +66,7 @@ public class SubjectCreateExecuteAction extends Action{
 			// リクエスト属性をセット
 			req.setAttribute("errors", errors);
 			req.setAttribute("subject_cd", subject_cd);
-			req.setAttribute("subject_name", name);
+			req.setAttribute("subject_name", subject_name);
 			req.getRequestDispatcher("subject_create.jsp").forward(req, res);
 			return;
 		}
