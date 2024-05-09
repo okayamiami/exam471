@@ -14,12 +14,7 @@
 
 	<form action = "SubjectDeleteExecute.action" method="post">
 
-
-					<a item="${subject_name}">
-						<td> ${subject_name}</td>
-						<p>を削除しても構いませんか？？？</p>
-					</item>
-
+				<p>${subject.name}(${subject.subject_cd})を削除しても構いませんか？？？</p>
 
 		<input type="submit" value="削除">
 	</form>

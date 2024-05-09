@@ -35,6 +35,11 @@ public class SubjectDeleteAction extends Action{
 		//なし
 		//ビジネスロジック 4
 		//なし
+		if(subject==null){
+			System.out.println("入ってない");
+		}else{
+			System.out.println("入ってる");
+		}
 		//DBへデータ保存 5
 		//なし
 		//レスポンス値をセット 6

@@ -80,6 +80,7 @@ public class SubjectDao extends Dao{
 				//科目情報をセットしていく
 
 				Subject subject=new Subject();
+
 				subject.setSubject_cd(rSet.getString("subject_cd"));
 				subject.setName(rSet.getString("name"));
 				subject.setSchool(school);
@@ -114,11 +115,11 @@ public class SubjectDao extends Dao{
 		String sql="select * from subject where SCHOOL_CD=? ";
 
 		//SQL文のソート
-		String sqls="order by SUBJECT_CD asc ";
+		//String sqls="order by SUBJECT_CD asc ";
 
 		try{
 			//プリペアードステートメントにSQLセット
-			statement=connection.prepareStatement(sql+sqls);
+			statement=connection.prepareStatement(sql);
 			//プリペアードステートメントに学校コードをバインド
 			statement.setString(1, school.getCd());
 
@@ -177,8 +178,8 @@ public class SubjectDao extends Dao{
 				statement=connection.prepareStatement(
 						"update subject set name=? where subject_cd=? and school_cd=? ");
 				//プリペアにバインド
-				statement.setString(1,subject.getSubject_cd());
-				statement.setString(2, subject.getName());
+				statement.setString(1, subject.getName());
+				statement.setString(2,subject.getSubject_cd());
 				statement.setString(3, subject.getSchool().getCd());
 				System.out.println("更新sql完了");
 

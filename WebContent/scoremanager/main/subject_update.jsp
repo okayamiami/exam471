@@ -13,12 +13,11 @@
 	<form action = "SubjectUpdateExecute.action" method="post">
 
 		<label>科目コード</label><br>
-		<input type="hidden" name="subject_cd" value="${subject.subject_cd}">
-		${subject.subject_cd}<br>
+		<p type="text" name="subject_cd" value="${subject.subject_cd}"> ${subject.subject_cd}</p>
 
 		<label>科目名</label>
-		<input type="text" name="subject_name" placeholder="科目名を入力してください"
-			maxlength="10" required />
+		<input type="text" name="subject_name"
+		placeholder="科目名を入力してください"	maxlength="10" required />
 		<div>${errors.get("subject_name")}</div>
 
 		<input type="submit" value="変更">
