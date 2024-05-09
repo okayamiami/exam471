@@ -40,31 +40,27 @@ public class TestListSubjectExecuteAction extends Action{
 		entYearStr = req.getParameter("f1");//入学年度取得
 		classNum = req.getParameter("f2");//入学年度取得
 		subjectStr = req.getParameter("f3");//入学年度取得
-		System.out.println(subjectStr);
 		System.out.println("8");
 		List<String> clist = cNumDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<Subject> sublist = subDao.filter(teacher.getSchool());// ログインユーザーの学校コードをもとに科目の一覧を取得
-
 		System.out.println("9");
+
+
+
 		subject=subDao.get(subjectStr,teacher.getSchool());
-
-
-		System.out.println(subject.getName());
-
-
 		System.out.println("10");
 		if (subject != null){
 			System.out.println("10-1");
 			String subjectName = subject.getName();
 			req.setAttribute("subjectName", subjectName);
 			req.setAttribute("f3", subjectName);
-			System.out.println(subjectName);
 			}
 		System.out.println("11");
 		if (entYearStr != null) {
 			// 数値に変換
 			System.out.println("11-1");
 			entYear = Integer.parseInt(entYearStr);
+
 		}
 		System.out.println("12");
 		for (int i = year - 10; i < year + 10; i++) {
@@ -75,10 +71,11 @@ public class TestListSubjectExecuteAction extends Action{
 		System.out.println("13");
 
 
-		List<TestListSubject> list = tlsubDao.filter(entYear,classNum,subject,teacher.getSchool());// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
+		List<TestListSubject> list = tlsubDao.filter(entYear,classNum,subject,teacher.getSchool());
+		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		if (list==null) {// 学生番号が入力されていない場合
 			System.out.println("13-1");
-			errors.put("student", "学生情報が存在しませんでした");
+			errors.put("student", "成績情報が存在しませんでした");
 
 		}else{
 			System.out.println("13-2");
