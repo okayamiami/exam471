@@ -13,9 +13,13 @@
 <h2>科目情報削除</h2>
 
 	<form action = "SubjectDeleteExecute.action" method="post">
-					<tr>
-						<td> "${subject.subject_cd}"を削除しても構いませんか？？？</td>
-					</tr>
+
+
+					<a item="${subject_name}">
+						<td> ${subject_name}</td>
+						<p>を削除しても構いませんか？？？</p>
+					</item>
+
 
 		<input type="submit" value="削除">
 	</form>

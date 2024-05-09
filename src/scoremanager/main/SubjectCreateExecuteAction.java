@@ -1,6 +1,7 @@
 package scoremanager.main;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,6 +20,7 @@ public class SubjectCreateExecuteAction extends Action{
 
 		//ローカル変数の宣言 1
 
+		System.out.println("クリエイト２");
 		HttpSession session = req.getSession();//セッション
 		SubjectDao sbDao = new SubjectDao();//科目Dao
 		String subject_cd = "";//科目コード
@@ -28,7 +30,7 @@ public class SubjectCreateExecuteAction extends Action{
 		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
 
 		// ログインユーザーの学校コードをもとに科目の一覧を取得
-		//List<Subject> list = sbDao.filter(teacher.getSchool());
+		List<Subject> list = sbDao.filter(teacher.getSchool());
 		subject = sbDao.get(subject_cd,teacher.getSchool());
 		//req.setAttribute("sblist", list);
 
@@ -41,7 +43,9 @@ public class SubjectCreateExecuteAction extends Action{
 		//DBへデータ保存 5
 		//条件で手順4~5の内容が分岐
 
-		if (subject == null) {// 科目コードが未登録だった場合
+		System.out.println("クリエイト3");
+		if (subject != null) {// 科目コードが未登録だった場合]
+			System.out.println("クリエイト開始");
 
 		// 科目インスタンスを初期化
 		subject = new Subject();
@@ -51,9 +55,11 @@ public class SubjectCreateExecuteAction extends Action{
 		subject.setSchool(((Teacher)session.getAttribute("user")).getSchool());
 		// 科目情報を保存
 		sbDao.save(subject);
+		System.out.println("クリエイト完了");
 
 		} else{//入力された学番がDBに保存されていた場合
 
+		System.out.println("クリエイトできてない");
 		errors.put("list", "科目コードが重複しています");
 		}
 
@@ -70,7 +76,9 @@ public class SubjectCreateExecuteAction extends Action{
 			req.getRequestDispatcher("subject_create.jsp").forward(req, res);
 			return;
 		}
+		req.setAttribute("sblist", list);
 		req.getRequestDispatcher("subject_create_done.jsp").forward(req, res);
+		System.out.println("クリエイトend");
 	}
 }
 

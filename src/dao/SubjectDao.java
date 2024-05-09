@@ -162,24 +162,25 @@ public class SubjectDao extends Dao{
 			if(old==null){
 				//科目が存在しなかった場合
 				//プリペアにINSERT文セットし新たな科目を作る
-				System.out.println("insert1");
+				System.out.println("追加sql開始");
 				statement=connection.prepareStatement(
 						"insert into subject(subject_cd,name,school_cd) values(?,?,?)");
 				//プリペアにバインド
 				statement.setString(1, subject.getSubject_cd());
 				statement.setString(2, subject.getName());
 				statement.setString(3, subject.getSchool().getCd());
+				System.out.println("追加sql終了");
 			}else{
 				//科目が存在した場合
 				//プリペアにUPDATE文セットし更新する
-				System.out.println("update開始");
+				System.out.println("更新sql開始");
 				statement=connection.prepareStatement(
-						"update subject set subject_cd=?, name=?, school_cd=? where subject_cd=?");
+						"update subject set name=? where subject_cd=? and school_cd=? ");
 				//プリペアにバインド
 				statement.setString(1,subject.getSubject_cd());
 				statement.setString(2, subject.getName());
 				statement.setString(3, subject.getSchool().getCd());
-				System.out.println("update完了");
+				System.out.println("更新sql完了");
 
 			}
 			//プリペア実行
@@ -224,6 +225,7 @@ public class SubjectDao extends Dao{
 		int count=0;
 		try{
 			//データベースから科目情報取得
+			System.out.println("デリートsql開始");
 			Subject old= get(subject.getSubject_cd(), subject.getSchool());
 			if(old !=null){
 				//科目と学校コードがnullじゃなければ科目コードが?の科目を削除
@@ -232,6 +234,7 @@ public class SubjectDao extends Dao{
 				//プリペアにバインド
 				statement.setString(1, subject.getSubject_cd());
 				statement.setString(2, subject.getSchool().getCd());
+				System.out.println("デリートsql終了");
 			}
 
 			//プリペア実行

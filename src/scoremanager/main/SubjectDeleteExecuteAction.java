@@ -23,6 +23,7 @@ public class SubjectDeleteExecuteAction extends Action{
 		HttpSession session = req.getSession();//セッション
 		SubjectDao sbDao = new SubjectDao();//科目Dao
 		SchoolDao scDao = new SchoolDao();
+		Subject subject = null;
 
 		String subject_cd = req.getParameter("subject_cd");//科目コード
 		String school_cd = req.getParameter("school_cd");//学校コード
@@ -30,7 +31,7 @@ public class SubjectDeleteExecuteAction extends Action{
 		School sc = scDao.get(school_cd);
 		Teacher teacher = (Teacher) session.getAttribute("user");
 
-		Subject subject = sbDao.get(subject_cd,teacher.getSchool());
+		subject = sbDao.get(subject_cd,teacher.getSchool());//科目コードと学校コードを取得
 		//Subject subject = sbDao.get(subject_cd, sc);//科目コードから科目インスタンスを取得
 
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
@@ -45,12 +46,12 @@ public class SubjectDeleteExecuteAction extends Action{
 		school_cd = req.getParameter("school_cd");
 
 		if (subject == null) {// 科目が未登録だった場合
-
-			System.out.println("delete1");
+			System.out.println("deleteできてない");
 			return;
 
 		} else{//入力された科目がDBに保存されていた場合
 
+			System.out.println("deleteExe開始");
 			// 科目インスタンスを初期化
 			subject = new Subject();
 
@@ -58,8 +59,8 @@ public class SubjectDeleteExecuteAction extends Action{
 			//subject.setName(subject_name);
 			sc.setCd(subject.getSchool().getCd());
 			// 科目情報を削除
-			System.out.println("delete2");
 			sbDao.delete(subject);
+			System.out.println("deleteExe完了");
 		}
 
 		//レスポンス値をセット 6

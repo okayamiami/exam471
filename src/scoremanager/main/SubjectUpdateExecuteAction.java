@@ -55,23 +55,17 @@ public class SubjectUpdateExecuteAction extends Action{
 			subject = new Subject();
 			// インスタンスに値をセット
 			subject.setSubject_cd(subject_cd);
-			System.out.println("update1");
 			subject.setName(subject_name);
-			System.out.println("update2");
 			subject.setSchool(((Teacher)session.getAttribute("user")).getSchool());
-			System.out.println("update3");
 			// 科目情報を保存
 			sbDao.save(subject);
-			System.out.println("updateExe終了");
+			System.out.println("updateExe完了");
 
 		}
 
 		//エラーがあったかどうかで手順6~7の内容が分岐
 		//レスポンス値をセット 6
 		//JSPへフォワード 7
-
-
-		System.out.println("updateExecute");
 		if(!errors.isEmpty()){//エラーがあった場合、更新画面へ戻る
 			// リクエスト属性をセット
 			System.out.println("111");
@@ -82,7 +76,7 @@ public class SubjectUpdateExecuteAction extends Action{
 			req.getRequestDispatcher("subject_update.jsp").forward(req, res);
 			return;
 		}
-		System.out.println("222");
+		System.out.println("完了ページへ");
 
 		req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
 }
