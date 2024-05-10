@@ -30,7 +30,7 @@ public class TestDao extends Dao{
 
 		try {
 			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("baseSql + condition");
+			statement = connection.prepareStatement(baseSql + condition);
 			//プレースホルダにバインド
 			statement.setString(1, student.getStudent_no());
 			statement.setString(2, subject.getSubject_cd());
@@ -120,7 +120,7 @@ public class TestDao extends Dao{
 
 
 		// SQL文のソート
-		String order = "order by student_no asc";
+		String order = " order by student_no asc";
 
 		try {
 			// プリペアードステートメントにSQL文をセット
