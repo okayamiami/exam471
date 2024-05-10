@@ -10,11 +10,11 @@
 <body>
 <h2>成績参照</h2>
 
-	<form action="TestListSubject.action" method="post">
+	<form action="TestListSubjectExecute.action" method="post">
 	<div>科目情報
 		<label>入学年度 </label>
-		<select name="f1">
-			<option value="0">--------</option>
+		<select name="f1" required>
+			<option value="">--------</option>
 			<c:forEach var="year" items="${ent_year_set}">
 				<%-- 現在のyearと選択されていたf1が一致していた場合selectedを追記 --%>
 				<option value="${year}" <c:if test="${year==f1}">selected</c:if>>${year}</option>
@@ -22,8 +22,8 @@
 		</select>
 
 		<label>クラス</label>
-		<select name="f2">
-			<option value="0">--------</option>
+		<select name="f2" required>
+			<option value="">--------</option>
 			<c:forEach var="num" items="${class_num_set}">
 				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
 				<option value="${num}" <c:if test="${num==f2}">selected</c:if>>${num}</option>
@@ -31,11 +31,11 @@
 		</select>
 
 		<label>科目</label>
-		<select name="f3">
-			<option value="0">--------</option>
+		<select name="f3" required>
+			<option value="">--------</option>
 			<c:forEach var="sub" items="${subject_set}">
 				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
-				<option value="${sub.name}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
+				<option value="${sub.subject_cd}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
 
@@ -97,7 +97,7 @@
 				</tr>
 				<c:forEach var="tlsub_set" items="${tlsub_set}">
 					<tr>
-						<td>${f1}</td>
+						<td>${tlsub_set.entYear}</td>
 						<td>${tlsub_set.class_num}</td>
 						<td>${tlsub_set.student_no}</td>
 						<td>${tlsub_set.student_name}</td>
@@ -109,7 +109,7 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<div>学生情報が存在しませんでした</div>
+			<div>成績情報が存在しませんでした</div>
 		</c:otherwise>
 	</c:choose>
 
