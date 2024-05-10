@@ -73,7 +73,7 @@
 						<td>${test.student.student_no}</td>
 						<td>${test.student.name}</td>
 						<td>
-						<input type="text">
+						<input type="text"
 							name="point" placeholder="点数を変更" maxlength="3"
 							value="${point}" required />
 						<div>${errors.get("point")}</div>
@@ -83,8 +83,11 @@
 
 				</c:forEach>
 			</table>
-
 		<input type="submit" name="f1" value="登録して終了">
+		</c:when>
+
+		<c:when test="${tests.size()==0 }">
+		<div>学生情報が存在しませんでした</div>
 		</c:when>
 	</c:choose>
 

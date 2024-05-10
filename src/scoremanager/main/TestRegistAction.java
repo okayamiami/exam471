@@ -42,7 +42,6 @@ public class TestRegistAction extends Action {
 		TestDao tDao = new TestDao();// テストDaoを初期化
 		//Map<String, String> errors = new HashMap<>();// エラーメッセージ
 
-		System.out.println("1");
 
 		Subject subject = new Subject();
 		//リクエストパラメータ―の取得 2
@@ -51,19 +50,16 @@ public class TestRegistAction extends Action {
 		subjectStr = req.getParameter("f3");
 		numStr = req.getParameter("f4");
 
-		System.out.println("2");
 		//DBからデータ取得 3
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		List<String> clist = cNumDao.filter(teacher.getSchool());
 		List<Subject> slist = subDao.filter(teacher.getSchool());
 
-		System.out.println("2-1");
 		if (entYearStr != null) {
 			// 数値に変換
 			entYear = Integer.parseInt(entYearStr);
 		}
 
-		System.out.println("2-2");
 		if (numStr != null) {
 			// 数値に変換
 			num = Integer.parseInt(numStr);
@@ -78,12 +74,12 @@ public class TestRegistAction extends Action {
 
 		//subject.setSubject_cd(subjectStr);
 
-		System.out.println("2-4");
+
 		if (entYear != 0 && !classNum.equals("0") && !subjectStr.equals("0")&& num != 0) {
 			// 入学年度、クラス番号、回数を指定
-			System.out.println("33333");
+
 			tests = tDao.filter(entYear, classNum, subject , num, teacher.getSchool());
-			System.out.println("444444");
+
 		}else{
 //			System.out.println("2-5");
 //			errors.put("f1", "指定してください");
@@ -91,10 +87,10 @@ public class TestRegistAction extends Action {
 		}
 
 		//ビジネスロジック 4
-		System.out.println("5");
+
 		if (entYearStr != null) {
 			// 数値に変換
-			System.out.println("5-1");
+
 			entYear = Integer.parseInt(entYearStr);
 		}
 		// リストを初期化
@@ -135,9 +131,7 @@ public class TestRegistAction extends Action {
 		//req.setAttribute("num", num);
 		req.setAttribute("ent_year", entYear);
 		//JSPへフォワード 7
-		System.out.println("6");
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
-		System.out.println("a");
 	}
 
 
