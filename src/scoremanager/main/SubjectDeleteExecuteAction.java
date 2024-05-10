@@ -1,7 +1,6 @@
 package scoremanager.main;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,20 +25,19 @@ public class SubjectDeleteExecuteAction extends Action{
 		SchoolDao scDao = new SchoolDao();
 		Subject subject = null;
 
+		//取得
 		String subject_cd = req.getParameter("subject_cd");//科目コード
 		String school_cd = req.getParameter("school_cd");//学校コード
-		String subject_name = req.getParameter("subject_name");
+		String subject_name = req.getParameter("subject_name");//科目名
 		School sc = scDao.get(school_cd);
 		Teacher teacher = (Teacher) session.getAttribute("user");
+		System.out.println(subject_cd);
+		System.out.println(school_cd );
+		System.out.println(subject_name);
 
-		//取得
-		subject_cd = req.getParameter("subject_cd");//科目コード
-		subject_name = req.getParameter("subject_name");//科目名
-		school_cd = req.getParameter("school_cd");
 
 		//検索
 		subject = sbDao.get(subject_cd,teacher.getSchool());//科目コードと学校コードを取得
-		List<Subject> list = sbDao.filter(teacher.getSchool());//科目コードから科目インスタンスを取得
 
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
 		//Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
@@ -50,9 +48,8 @@ public class SubjectDeleteExecuteAction extends Action{
 		//条件で手順4~5の内容が分岐
 
 		if (subject== null) {// 科目が未登録だった場合
-			System.out.println("deleteできてない");
-			return ;
-
+			System.out.println("subjectがnull");
+			errors.put("subject_cd", "科目が存在してません");
 		} else{//入力された科目がDBに保存されていた場合
 
 			System.out.println("deleteExe開始");
@@ -61,7 +58,7 @@ public class SubjectDeleteExecuteAction extends Action{
 
 			subject.setSubject_cd(subject_cd);
 			subject.setName(subject_name);
-			sc.setCd(subject.getSchool().getCd());
+			subject.setSchool((scDao.get(school_cd)));
 			// 科目情報を削除
 			sbDao.delete(subject);
 			System.out.println("deleteExe完了");
@@ -69,8 +66,6 @@ public class SubjectDeleteExecuteAction extends Action{
 
 		//レスポンス値をセット 6
 		//JSPへフォワード 7
-
-		//System.out.println("3-2");
 		if(!errors.isEmpty()){
 			System.out.println("delete3");
 			// リクエスト属性をセット

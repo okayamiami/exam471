@@ -38,6 +38,7 @@ public class SubjectUpdateAction extends Action{
 		//検索
 		Subject subject = sbDao.get(subject_cd, sc);//科目コードから科目インスタンスを取得
 		List<Subject> list = sbDao.filter(teacher.getSchool());
+		School sch=scDao.get(teacher.getSchool().getCd());
 
 		//ビジネスロジック
 		//科目コードから学生インスタンスを取得
@@ -45,6 +46,9 @@ public class SubjectUpdateAction extends Action{
 		//レスポンス値をセット 6
 		//条件で手順4~6の内容が分岐
 		//JSPへフォワード 7
+		req.setAttribute("subject_name", subject_name);
+		req.setAttribute("subject_cd", subject_cd);
+		req.setAttribute("school", sch);
 		req.setAttribute("sblist", list);
 		req.setAttribute("subject", subject);
 		System.out.println("UPdateフォワード");

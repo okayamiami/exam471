@@ -20,6 +20,10 @@
 		placeholder="科目名を入力してください"	maxlength="10" required />
 		<div>${errors.get("subject_name")}</div>
 
+		<input type="hidden" name="subject_name" value="${subject.name}">
+		<input type="hidden" name="subject_cd" value="${subject.subject_cd}">
+		<input type="hidden" name="school_cd" value="${school.cd}">
+
 		<input type="submit" value="変更">
 
 	</form>

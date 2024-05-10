@@ -15,7 +15,9 @@
 	<form action = "SubjectDeleteExecute.action" method="post">
 
 				<p>${subject.name}(${subject.subject_cd})を削除しても構いませんか？？？</p>
-
+	<input type="hidden" name="subject_name" value="${subject.name}">
+	<input type="hidden" name="subject_cd" value="${subject.subject_cd}">
+	<input type="hidden" name="school_cd" value="${school.cd}">
 		<input type="submit" value="削除">
 	</form>
 

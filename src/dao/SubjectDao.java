@@ -231,7 +231,8 @@ public class SubjectDao extends Dao{
 			if(old !=null){
 				//科目と学校コードがnullじゃなければ科目コードが?の科目を削除
 				statement=connection.prepareStatement(
-						"delete from subject where subject_cd=?, school_cd=? values(?,?)");
+						"delete from subject where subject_cd=? and school_cd=? ");
+						//delete from subject where subject_cd='DIE' and school_cd='knz'
 				//プリペアにバインド
 				statement.setString(1, subject.getSubject_cd());
 				statement.setString(2, subject.getSchool().getCd());

@@ -39,14 +39,12 @@ public class SubjectCreateExecuteAction extends Action{
 		//検索
 		List<Subject> list = sbDao.filter(teacher.getSchool());
 		subject = sbDao.get(subject_cd,teacher.getSchool());
-		//req.setAttribute("sblist", list);
-
 		//ビジネスロジック 4
 		//DBへデータ保存 5
 		//条件で手順4~5の内容が分岐
 
 		System.out.println("クリエイト3");
-		if (subject == null) {// 科目コードが未登録だった場合]
+		if (subject == null) {// 科目コードが未登録だった場合
 			System.out.println("クリエイト開始");
 
 		// 科目インスタンスを初期化
