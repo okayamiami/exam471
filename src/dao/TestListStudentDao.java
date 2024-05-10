@@ -18,26 +18,18 @@ public class TestListStudentDao extends Dao{
 
 		try{
 			//リザルトセットを全件走査
-			System.out.println("a1");
 			while(rSet.next()){
 				//学生インスタンス初期化
 				//学生情報をセットしていく
 
 				TestListStudent tlstu=new TestListStudent();
-				System.out.println("a2");
 				tlstu.setName(rSet.getString("name"));
-				System.out.println("a3");
 				tlstu.setSubject_cd(rSet.getString("subject_cd"));
-				System.out.println("a4");
 				tlstu.setNo(rSet.getInt("no"));
-				System.out.println("a5");
 				tlstu.setPoint(rSet.getInt("point"));
-				System.out.println("a6");
 
 				//リストにセットしていく
 				list.add(tlstu);
-				System.out.println("a7");
-
 			}
 		}catch(SQLException |NullPointerException e){
 			e.printStackTrace();
@@ -68,7 +60,6 @@ public class TestListStudentDao extends Dao{
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
 			list=postFilter(rSet);
-			System.out.println("a8");
 		}catch(Exception e){
 			throw e;
 		}finally{
@@ -87,7 +78,6 @@ public class TestListStudentDao extends Dao{
 				}
 			}
 		}
-		System.out.println("a9");
 		return list;
 	}
 }

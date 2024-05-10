@@ -58,7 +58,6 @@ public class TestListStudentExecuteAction extends Action {
 			entYear = Integer.parseInt(entYearStr);
 		}
 
-		System.out.println("4");
 		for (int i = year - 10; i < year + 10; i++) {
 			entYearSet.add(i);
 		}// 現在を起点に前後10年をリストに追加
@@ -71,7 +70,6 @@ public class TestListStudentExecuteAction extends Action {
 		}else{
 			student = sDao.get(student_no);// 学生番号から学生インスタンスを取得
 			List<TestListStudent> list = tlsDao.filter(student);// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
-			System.out.println("a10");
 			req.setAttribute("tls_set", list);//学生別のlistをセット
 			req.setAttribute("student", student);//学生別のlistをセット
 			req.setAttribute("f1", entYear);
@@ -81,17 +79,16 @@ public class TestListStudentExecuteAction extends Action {
 			req.setAttribute("class_num_set", clist);//クラス番号のlistをセット
 			req.setAttribute("subject_set", sublist);//のlistをセット
 			req.setAttribute("ent_year_set", entYearSet);
-			System.out.println("a11");
 		}
-		System.out.println("a12");
+
+
 		if(!errors.isEmpty()){
 			// リクエスト属性をセット
-			System.out.println("a13-1");
 			req.setAttribute("errors", errors);
 			req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 			return;
 		}
-		System.out.println("a13");
+
 		req.getRequestDispatcher("test_list_student.jsp").forward(req, res);
 	}
 
