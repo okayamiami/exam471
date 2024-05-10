@@ -9,8 +9,20 @@
 <title>科目一覧</title>
 </head>
 <body>
+
+	<div class="side">
+<ul>
+<li><p><a href="StudentList.action">学生管理</a></p></li>
+<li><p><a href="TestRegist.action">成績登録</a></p></li>
+<li><p><a href="TestList.action">成績参照</a></p></li>
+<li><p><a href="SubjectList.action">科目管理</a></p></li>
+</ul>
+</div>
+
 <h2>科目管理</h2>
 	<a href="SubjectCreate.action">新規登録</a>
+
+
 
 
 			<table class="table table-hover">
