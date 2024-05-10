@@ -8,6 +8,14 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="side">
+<ul>
+<li><p><a href="StudentList.action">学生管理</a></p></li>
+<li><p><a href="TestRegist.action">成績登録</a></p></li>
+<li><p><a href="TestList.action">成績参照</a></p></li>
+<li><p><a href="SubjectList.action">科目管理</a></p></li>
+</ul>
+</div>
 <h2>成績参照</h2>
 
 	<form action="TestListSubjectExecute.action" method="post">
@@ -81,6 +89,8 @@
 				</c:forEach>
 			</table>
 		</c:when>
+
+
 		<c:when test="${tlsub_set.size()>0}">
 			<div>科目名：${f3}</div>
 
@@ -109,7 +119,15 @@
 			</table>
 		</c:when>
 		<c:otherwise>
-			<div>成績情報が存在しませんでした</div>
+			<c:choose>
+				<c:when test="${student != null}">
+					<div>氏名：${student.name}(${student.student_no})</div>
+					<div>成績情報が存在しませんでした</div>
+				</c:when>
+				<c:otherwise>
+					<div>成績情報が存在しませんでした</div>
+				</c:otherwise>
+			</c:choose>
 		</c:otherwise>
 	</c:choose>
 

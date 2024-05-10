@@ -66,20 +66,21 @@ public class TestListStudentExecuteAction extends Action {
 		//↓これいらない
 		if (sDao.get(student_no)==null) {// 学生番号が入力されていない場合
 			errors.put("student", "学生情報が存在しませんでした");
-
 		}else{
 			student = sDao.get(student_no);// 学生番号から学生インスタンスを取得
 			List<TestListStudent> list = tlsDao.filter(student);// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 			req.setAttribute("tls_set", list);//学生別のlistをセット
 			req.setAttribute("student", student);//学生別のlistをセット
-			req.setAttribute("f1", entYear);
-			// リクエストにクラス番号をセット
-			req.setAttribute("f2", classNum);
-			req.setAttribute("f3",subject);
-			req.setAttribute("class_num_set", clist);//クラス番号のlistをセット
-			req.setAttribute("subject_set", sublist);//のlistをセット
-			req.setAttribute("ent_year_set", entYearSet);
 		}
+
+		req.setAttribute("f1", entYear);
+		// リクエストにクラス番号をセット
+		req.setAttribute("f2", classNum);
+		req.setAttribute("f3",subject);
+		req.setAttribute("class_num_set", clist);//クラス番号のlistをセット
+		req.setAttribute("subject_set", sublist);//のlistをセット
+		req.setAttribute("ent_year_set", entYearSet);
+
 
 
 		if(!errors.isEmpty()){
