@@ -66,6 +66,7 @@
 					<th></th>
 
 				</tr>
+				<form action = "TestRegistExecute.action" method="post">
 				<c:forEach var="test" items="${tests}">
 					<tr>
 						<td>${ent_year}</td>
@@ -75,7 +76,7 @@
 						<td>
 						<input type="text"
 							name="point" placeholder="点数を変更" maxlength="3"
-							value="${point}" required />
+							value="${point}" />
 						<div>${errors.get("point")}</div>
 
 						</td>
@@ -84,6 +85,7 @@
 				</c:forEach>
 			</table>
 		<input type="submit" name="f1" value="登録して終了">
+		</form>
 		</c:when>
 
 		<c:when test="${tests.size()==0 }">

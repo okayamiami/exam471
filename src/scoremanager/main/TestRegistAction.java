@@ -122,6 +122,8 @@ public class TestRegistAction extends Action {
 
 		// リクエストにテストリストをセット
 		req.setAttribute("tests", tests);
+		System.out.println("aaaaaaaaaaaaaaaa");
+		System.out.println(tests);
 		// リクエストにデータをセット
 		req.setAttribute("class_num_set", clist);
 		req.setAttribute("ent_year_set", entYearSet);
