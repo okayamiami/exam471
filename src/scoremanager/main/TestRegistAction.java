@@ -10,8 +10,10 @@ import javax.servlet.http.HttpSession;
 
 import bean.Subject;
 import bean.Teacher;
+import bean.Test;
 import dao.ClassNumDao;
 import dao.SubjectDao;
+import dao.TestDao;
 import tool.Action;
 
 public class TestRegistAction extends Action {
@@ -31,13 +33,13 @@ public class TestRegistAction extends Action {
 		int num = 0;//回数
 //		int point = 0;//得点
 		int entYear = 0;// 入学年度
-		//List<Test> tests = null;// 学生リスト
+		List<Test> tests = null;// 学生リスト
 		LocalDate todaysDate = LocalDate.now();// LcalDateインスタンスを取得
 		int year = todaysDate.getYear();// 現在の年を取得
 		ClassNumDao cNumDao = new ClassNumDao();// クラス番号Daoを初期化
 
 		SubjectDao subDao = new SubjectDao();// 科目Daoを初期化
-		//TestDao tDao = new TestDao();// テストDaoを初期化
+		TestDao tDao = new TestDao();// テストDaoを初期化
 		//Map<String, String> errors = new HashMap<>();// エラーメッセージ
 
 		System.out.println("1");
@@ -77,16 +79,16 @@ public class TestRegistAction extends Action {
 		//subject.setSubject_cd(subjectStr);
 
 		System.out.println("2-4");
-//		if (entYear != 0 && !classNum.equals("0") && !subject.equals("0")&& num != 0) {
-//			// 入学年度、クラス番号、回数を指定
-//			System.out.println("3");
-//			tests = tDao.filter(entYear, classNum, subject , num, teacher.getSchool());
-//			System.out.println("4");
-//		}else{
+		if (entYear != 0 && !classNum.equals("0") && !subjectStr.equals("0")&& num != 0) {
+			// 入学年度、クラス番号、回数を指定
+			System.out.println("33333");
+			tests = tDao.filter(entYear, classNum, subject , num, teacher.getSchool());
+			System.out.println("444444");
+		}else{
 //			System.out.println("2-5");
 //			errors.put("f1", "指定してください");
 //			req.setAttribute("errors", errors);
-//		}
+		}
 
 		//ビジネスロジック 4
 		System.out.println("5");
@@ -114,15 +116,16 @@ public class TestRegistAction extends Action {
 
 
 		if (subjectStr != null){
+			subject = subDao.get(subjectStr,null );
 		String subjectName = subject.getName();
-		req.setAttribute("subjectName", subjectName);
+		//req.setAttribute("subjectName", subjectName);
 		req.setAttribute("f3", subjectName);
 		}
 
 		req.setAttribute("f4", num);
 
 		// リクエストにテストリストをセット
-		//req.setAttribute("tests", tests);
+		req.setAttribute("tests", tests);
 		// リクエストにデータをセット
 		req.setAttribute("class_num_set", clist);
 		req.setAttribute("ent_year_set", entYearSet);
@@ -130,7 +133,7 @@ public class TestRegistAction extends Action {
 		System.out.println(clist);
 		System.out.println(slist);
 		//req.setAttribute("num", num);
-		//req.setAttribute("ent_year", entYear);
+		req.setAttribute("ent_year", entYear);
 		//JSPへフォワード 7
 		System.out.println("6");
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);

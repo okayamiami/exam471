@@ -35,15 +35,15 @@
 			<option value="0">--------</option>
 			<c:forEach var="sub" items="${subject_set}">
 				<%-- 現在のsubと選択されていたf3が一致していた場合selectedを追記 --%>
-				<option value="${sub.name}" <c:if test="${sub==f3}">selected</c:if>>${sub.name}</option>
+				<option value="${sub.subject_cd}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
 
 		<label>回数</label>
 		<select name="f4">
 			<option value="0">--------</option>
-			<option value="1"> <c:if test="${1==f4}">selected</c:if>1</option>
-			<option value="2"> <c:if test="${2==f4}">selected</c:if>2</option>
+			<option value="1" <c:if test="${1==f4}">selected</c:if>>1</option>
+			<option value="2" <c:if test="${2==f4}">selected</c:if>>2</option>
 		</select>
 
 
@@ -53,8 +53,8 @@
 	</form>
 
 	<c:choose>
-		<c:when test="${students.size()>0}">
-			<div>検索結果：${students.size()}件</div>
+		<c:when test="${tests.size()>0}">
+			<div>検索結果：${tests.size()}件</div>
 
 			<table class="table table-hover">
 				<tr>
@@ -66,25 +66,25 @@
 					<th></th>
 
 				</tr>
-				<c:forEach var="student" items="${students}">
+				<c:forEach var="test" items="${tests}">
 					<tr>
-						<td>${student.entYear}</td>
-						<td>${student.classNum}</td>
-						<td>${student.student_no}</td>
-						<td>${student.name}</td>
-						<td>${student.point}</td>
-
+						<td>${ent_year}</td>
+						<td>${test.classNum}</td>
+						<td>${test.student.student_no}</td>
+						<td>${test.student.name}</td>
 						<td>
-						<label>点数</label>
-						<input type="text"
+						<input type="text">
 							name="point" placeholder="点数を変更" maxlength="3"
 							value="${point}" required />
 						<div>${errors.get("point")}</div>
 
 						</td>
 					</tr>
+
 				</c:forEach>
 			</table>
+
+		<input type="submit" name="f1" value="登録して終了">
 		</c:when>
 	</c:choose>
 
