@@ -31,9 +31,6 @@ public class SubjectDeleteExecuteAction extends Action{
 		String subject_name = req.getParameter("subject_name");//科目名
 		School sc = scDao.get(school_cd);
 		Teacher teacher = (Teacher) session.getAttribute("user");
-		System.out.println(subject_cd);
-		System.out.println(school_cd );
-		System.out.println(subject_name);
 
 
 		//検索
