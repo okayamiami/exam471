@@ -9,9 +9,9 @@
 <title>得点管理システム</title>
 </head>
 <body>
-	<h2>科目更新完了</h2>
+	<h2>学生更新完了</h2>
 		<p>変更が完了しました</p>
-	<a href="SubjectList.action">学生一覧</a>
+	<a href="StudentList.action">学生一覧</a>
 </body>
 </html>
 
