@@ -12,6 +12,7 @@
 
 	<div class="side">
 <ul>
+<li><p><a href="Menu.action">メニュー</a></p></li>
 <li><p><a href="StudentList.action">学生管理</a></p></li>
 <li><p><a href="TestRegist.action">成績登録</a></p></li>
 <li><p><a href="TestList.action">成績参照</a></p></li>
