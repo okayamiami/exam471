@@ -209,7 +209,7 @@ public class TestDao extends Dao{
 			//
 			if(old == null){
 			//
-			statement = connection.prepareStatement("insert into test(student_no,subject_cd,school_cd,no,point,class_num)values(?,?,?,?,?)");
+			statement = connection.prepareStatement("insert into test(student_no,subject_cd,school_cd,no,point,class_num)values(?, ?, ?, ?, ?, ?)");
 
 			//プレースホルダ―に値を設定
 			statement.setString(1, test.getStudent().getStudent_no());
