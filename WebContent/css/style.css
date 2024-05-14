@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.main {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+.side {
+  width: 96px;
+  background-color: #ffffff;
+  padding: 20px 20px 0 10px;
+
+
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  border-left: solid #000000;
+  padding:20px 0 0 20px;
+  line-height: 2.0;
+}
