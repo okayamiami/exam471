@@ -26,12 +26,12 @@
 	<label>ID</label>
 	<input type="text" name="id" maxlength="20" placeholder="半角でご入力下さい"
 	required
-	>
+	><br>
 
 	<!-- パスワード -->
 	<label>パスワード</label>
 	<input type="password" id="password" name="password" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい" required/><br>
-	<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" /><br>
+	<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
 	<label for="showPassword">パスワードを表示</label>
 
 	<script>
