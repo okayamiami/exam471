@@ -63,7 +63,7 @@ public class TestListStudentExecuteAction extends Action {
 		}// 現在を起点に前後10年をリストに追加
 		//DBからデータ取得 3
 
-		//↓これいらない
+
 		if (sDao.get(student_no)==null) {// 学生番号が入力されていない場合
 			errors.put("student", "学生情報が存在しませんでした");
 		}else{
