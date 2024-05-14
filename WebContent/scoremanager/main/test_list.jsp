@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header>
+
 <div class="side">
 <ul>
 <li><p><a href="Menu.action">メニュー</a></p></li>
@@ -18,8 +18,7 @@
 <li><p><a href="SubjectList.action">科目管理</a></p></li>
 </ul>
 </div>
-</header>
-<main>
+
 <h2>成績参照</h2>
 
 	<form action="TestListSubjectExecute.action" method="post">
@@ -69,7 +68,7 @@
 		<div>${errors.get("f1")}</div>
 		</div>
 	</form>
-</main>
+
 
 
 </body>
