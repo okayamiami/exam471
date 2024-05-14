@@ -8,17 +8,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>科目一覧</title>
 </head>
+
+<c:import url="/common/header.jsp" />
+
 <body>
 
-	<div class="side">
-<ul>
-<li><p><a href="Menu.action">メニュー</a></p></li>
-<li><p><a href="StudentList.action">学生管理</a></p></li>
-<li><p><a href="TestRegist.action">成績登録</a></p></li>
-<li><p><a href="TestList.action">成績参照</a></p></li>
-<li><p><a href="SubjectList.action">科目管理</a></p></li>
-</ul>
-</div>
+<c:import url="/common/navi.jsp" />
 
 <h2>科目管理</h2>
 	<a href="SubjectCreate.action">新規登録</a>
@@ -43,4 +38,5 @@
 				</c:forEach>
 			</table>
 </body>
+<c:import url="/common/footer.jsp" />
 </html>
