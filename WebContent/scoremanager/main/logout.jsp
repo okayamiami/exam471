@@ -8,7 +8,7 @@
 </head>
 <body>
 	<p>ログアウトしました</p>
-	<a href="Login.action">ログイン</a>
+	<a href="/exam471/scoremanager/Login.action">ログイン</a>
 
 </body>
 </html>
