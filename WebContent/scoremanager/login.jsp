@@ -30,8 +30,8 @@
 
 	<!-- パスワード -->
 	<label>パスワード</label>
-	<input type="password" id="password" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい" required/>
-	<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+	<input type="password" id="password" name="password" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい" required/><br>
+	<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" /><br>
 	<label for="showPassword">パスワードを表示</label>
 
 	<script>
