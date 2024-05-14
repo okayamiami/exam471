@@ -232,7 +232,7 @@ public class SubjectDao extends Dao{
 				//科目と学校コードがnullじゃなければ科目コードが?の科目を削除
 				statement=connection.prepareStatement(
 						"delete from subject where subject_cd=? and school_cd=? ");
-						//delete from subject where subject_cd='DIE' and school_cd='knz'
+						//H2で使用　delete from subject where subject_cd='DIE' and school_cd='knz'
 				//プリペアにバインド
 				statement.setString(1, subject.getSubject_cd());
 				statement.setString(2, subject.getSchool().getCd());

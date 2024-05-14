@@ -4,17 +4,14 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>得点管理システム</title>
+<title>成績管理システム</title>
+
+
 </head>
 <body>
 
-<form action = "LoginAction.action" method="post">
-
-	<label>ログアウトしますか?</label>
-	<input type="submit" value="ログアウト">
-
-
-</form>
+	<p>ログアウトしました</p>
+	<a href="LoginAction.action">ログイン</a>
 
 
 </body>
