@@ -21,7 +21,7 @@ public class LogoutAction extends Action{
 		//Teacher teacher = (Teacher) session.getAttribute("user");
 		if(session.getAttribute("user")!=null) {
 			session.removeAttribute("user");
-			System.out.println("1");
+			
 			req.getRequestDispatcher("logout.jsp").forward(req, res);
 		}
 
