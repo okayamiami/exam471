@@ -7,11 +7,8 @@
 <title>得点管理システム</title>
 </head>
 <body>
-
-<form action = "LoginAction.action" method="post">
-
-	<label>ログアウトしますか?</label>
-	<input type="submit" value="ログアウト">
+	<p>ログアウトしました</p>
+	<a href="Login.action">ログイン</a>
 
 
 </form>
