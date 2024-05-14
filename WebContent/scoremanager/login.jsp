@@ -21,24 +21,18 @@
 	required:input入力を必須にする
 
  -->
-
+	<div>${errors.get("null")}</div>
 	<!-- ID -->
 	<label>ID</label>
-	<input type="text" name="id" maxlength="20" placeholder="20文字以内の半角英数字"
-	value="admin"
+	<input type="text" name="id" maxlength="20" placeholder="半角でご入力下さい"
+	required
 	>
 
 	<!-- パスワード -->
 	<label>パスワード</label>
-	<input type="password" name="password" value="password">
+	<input type="password" name="password" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい" required>
 
-	<!-- 名前 -->
-	<label>名前</label>
-	<input type="text" name="name" value="大原　門左衛門">
 
-	<!-- 学校コード -->
-	<label>学校コード</label>
-	<input type="text" name="school_cd" value="knz">
 
 	<input type="submit" name="login" value="ログイン"/>
 

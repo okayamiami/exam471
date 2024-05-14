@@ -1,11 +1,14 @@
 package scoremanager;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.School;
 import bean.Teacher;
+import dao.TeacherDao;
 import tool.Action;
 
 public class LoginExecuteAction extends Action{
@@ -15,31 +18,29 @@ public class LoginExecuteAction extends Action{
 		//ローカル変数の宣言 1
 		String url = "";
 
-		Teacher teacher = new Teacher();
-		School school = new School();
+		Map<String, String> errors = new HashMap<>();// エラーメッセージ
 
+		Teacher teacher = new Teacher();
+
+		TeacherDao tDao= new TeacherDao();
 		//リクエストパラメータ―の取得 2
 		String id = req.getParameter("id");
 		String password = req.getParameter("password");
-		String name = req.getParameter("namae");
-		String school_cd = req.getParameter("school_cd");
 
-		//DBからデータ取得 3
-		//なし
-		//ビジネスロジック 4
+		teacher=tDao.login(id, password);
 
-		teacher.setId(id);
-		teacher.setPassword(password);
-		teacher.setName(name);
+		if(teacher==null){
+			errors.put("null", "ログインに失敗しました。IDまたはパスワードが正しくありません。");
+		}else{
+			teacher.setAuthenticated(true);
+		}
 
-		school.setCd(school_cd);
-		school.setName("金沢校");
-
-		teacher.setSchool(school);//School型
-
-		// 認証済みフラグを立てる
-		teacher.setAuthenticated(true);
-
+		if(!errors.isEmpty()){
+			// リクエスト属性をセット
+			req.setAttribute("errors", errors);
+			req.getRequestDispatcher("login.jsp").forward(req, res);
+			return;
+		}
 		//Sessionを有効にする
 		HttpSession session = req.getSession(true);
 		//セッションに"user"という変数名で値はTeacher変数の中身
