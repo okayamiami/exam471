@@ -14,6 +14,7 @@
 	<form action="TestListSubjectExecute.action" method="post">
 	<div>科目情報
 		<label>入学年度 </label>
+		<!-- f1で飛ばす -->
 		<select name="f1" required>
 			<option value="" disabled selected>--------</option>
 			<c:forEach var="year" items="${ent_year_set}">
@@ -23,6 +24,7 @@
 		</select>
 
 		<label>クラス</label>
+		<!-- f2で飛ばす -->
 		<select name="f2" required>
 			<option value="" disabled selected>--------</option>
 			<c:forEach var="num" items="${class_num_set}">
@@ -32,10 +34,11 @@
 		</select>
 
 		<label>科目</label>
+		<!-- f3で飛ばす -->
 		<select name="f3" required>
 			<option value="" disabled selected>--------</option>
 			<c:forEach var="sub" items="${subject_set}">
-				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
+				<%-- 現在のsubと選択されていたf3が一致していた場合selectedを追記 --%>
 				<option value="${sub.subject_cd}" <c:if test="${sub==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
@@ -50,12 +53,11 @@
 	<form action="TestListStudentExecute.action" method="post">
 	<div>学生情報
 		<label>学生番号</label>
-			<%-- パラメーターf3が存在している場合checkedを追記 --%>
+			<!-- student_noで飛ばす -->
 			<input type="text" name="student_no" placeholder="学生番号を入力してください" maxlength="10" required  />
-
 		<button>検索</button>
 
-		<div>${errors.get("f1")}</div>
+		<div>${errors.get("student")}</div>
 		</div>
 	</form>
 

@@ -20,19 +20,21 @@ public class TestListSubjectDao extends Dao{
 	private List<TestListSubject> postFilter(ResultSet rSet)throws Exception{
 		List<TestListSubject>list=new ArrayList<>();
 		try{
-			//リザルトセットを全件走査
+			//回数、人数判定用
 			String student = "";
+			//科目別インスタンス
 			TestListSubject tlsub=new TestListSubject();
-
+			//リザルトセットを全件走査
 			while(rSet.next()){
-				//学生インスタンス初期化
-				//学生情報をセットしていく
+				//もし判定用に同じ番号が入っていたら
 				if(student.equals(rSet.getString("student_no"))){
 					tlsub.setPoints(tlsub.putPoint(rSet.getInt("no"),rSet.getInt("point")));
 				}else{
+					//判定用が空じゃないなら
 					if(!(student.equals(""))){
 						list.add(tlsub);
 					}
+					//リストにセットしていく
 					tlsub = new TestListSubject();
 					tlsub.setEntYear(rSet.getInt("ent_year"));
 					tlsub.setStudent_no(rSet.getString("student_no"));
@@ -41,8 +43,9 @@ public class TestListSubjectDao extends Dao{
 					tlsub.setPoints(tlsub.putPoint(rSet.getInt("no"),rSet.getInt("point")));
 					student=rSet.getString("student_no");
 				}
-				//リストにセットしていく
+
 			}
+			//最後の１人をセットするためのやつ
 			if (!(student.equals(""))){
 				list.add(tlsub);
 			}
@@ -61,18 +64,18 @@ public class TestListSubjectDao extends Dao{
 		PreparedStatement statement=null;
 		//リザルトセット
 		ResultSet rSet=null;
-		//SQL文の条件追加
+
 		try{
-			//プリペアードステートメントにSQLセット
 			statement=connection.prepareStatement(baseSql);
 			statement.setString(1, subject.getSubject_cd());
 			statement.setInt(2, entYear);
 			statement.setString(3, classNum);
-			//プレースホルダー未完　statement.setString(1, );
+
 
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
 			list=postFilter(rSet);
+
 		}catch(Exception e){
 			throw e;
 		}finally{

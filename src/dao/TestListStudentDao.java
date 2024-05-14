@@ -19,16 +19,12 @@ public class TestListStudentDao extends Dao{
 		try{
 			//リザルトセットを全件走査
 			while(rSet.next()){
-				//学生インスタンス初期化
-				//学生情報をセットしていく
-
+				//リストにセットしていく
 				TestListStudent tlstu=new TestListStudent();
 				tlstu.setName(rSet.getString("name"));
 				tlstu.setSubject_cd(rSet.getString("subject_cd"));
 				tlstu.setNo(rSet.getInt("no"));
 				tlstu.setPoint(rSet.getInt("point"));
-
-				//リストにセットしていく
 				list.add(tlstu);
 			}
 		}catch(SQLException |NullPointerException e){
@@ -47,19 +43,17 @@ public class TestListStudentDao extends Dao{
 		PreparedStatement statement=null;
 		//リザルトセット
 		ResultSet rSet=null;
-		//SQL文の条件追加
 
-		//SQL文のソート
-		//String sqls="order by subject_cd asc ";
 
 		try{
 			//プリペアードステートメントにSQLセット
 			statement=connection.prepareStatement(baseSql);
-			//プリペアードステートメントに学校コードをバインド
+			//プリペアードステートメントにバインド
 			statement.setString(1, student.getStudent_no());
 			//プリペアードステートメントを実行
 			rSet=statement.executeQuery();
 			list=postFilter(rSet);
+
 		}catch(Exception e){
 			throw e;
 		}finally{

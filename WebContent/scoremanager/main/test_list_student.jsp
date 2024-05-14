@@ -11,7 +11,7 @@
 <body>
 
 <h2>成績参照</h2>
-
+	<!-- 科目別 -->
 	<form action="TestListSubjectExecute.action" method="post">
 	<div>科目情報
 		<label>入学年度 </label>
@@ -36,33 +36,29 @@
 		<select name="f3" required>
 			<option value="">--------</option>
 			<c:forEach var="sub" items="${subject_set}">
-				<%-- 現在のnumと選択されていたf2が一致していた場合selectedを追記 --%>
+				<%-- 現在のsubと選択されていたf3が一致していた場合selectedを追記 --%>
 				<option value="${sub.subject_cd}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
-
-
 		<button>検索</button>
-
-		<div>${errors.get("f1")}</div>
 		</div>
 	</form>
 
+	<!-- 学生別 -->
 	<form action="TestListStudentExecute.action" method="post">
 	<div>学生情報
 		<label>学生番号</label>
-			<%-- パラメーターf3が存在している場合checkedを追記 --%>
 			<input type="text" name="student_no" placeholder="学生番号を入力してください" maxlength="10" required  />
-
 		<button>検索</button>
-
-		<div>${errors.get("f1")}</div>
 		</div>
 	</form>
 
+	<!-- 結果部分 -->
 	<c:choose>
+		<%--学生別 --%>
 		<c:when test="${tls_set.size()>0}">
 			<div>氏名：${student.name}(${student.student_no})</div>
+
 
 			<table class="table table-hover">
 				<tr>
@@ -84,7 +80,7 @@
 			</table>
 		</c:when>
 
-
+		<%--科目別 --%>
 		<c:when test="${tlsub_set.size()>0}">
 			<div>科目名：${f3}</div>
 
@@ -112,14 +108,27 @@
 				</c:forEach>
 			</table>
 		</c:when>
+
+		<%--共用で存在しない場合 --%>
 		<c:otherwise>
 			<c:choose>
+				<%--学生別で生徒は存在するが成績が１つもついていない --%>
 				<c:when test="${student != null}">
 					<div>氏名：${student.name}(${student.student_no})</div>
 					<div>成績情報が存在しませんでした</div>
 				</c:when>
+				<%--その他 --%>
 				<c:otherwise>
-					<div>成績情報が存在しませんでした</div>
+					<c:choose>
+					<%--studentの名前でエラーが飛んできてる場合 --%>
+						<c:when test="${errors.get(\"student\")!= null}">
+						<div>${errors.get("student")}</div>
+						</c:when>
+						<%--共用で成績がない場合 --%>
+						<c:otherwise>
+						<div>成績情報が存在しませんでした</div>
+						</c:otherwise>
+					</c:choose>
 				</c:otherwise>
 			</c:choose>
 		</c:otherwise>
