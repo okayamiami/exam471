@@ -64,15 +64,7 @@ public class TestRegistAction extends Action {
 			// 数値に変換
 			num = Integer.parseInt(numStr);
 		}
-		//System.out.println(subjectStr);
 
-//		System.out.println("2-3");
-//		if (pointStr != null) {
-//			// 数値に変換
-//			point = Integer.parseInt(pointStr);
-//		}
-
-		//subject.setSubject_cd(subjectStr);
 
 
 		if (entYear != 0 && !classNum.equals("0") && !subjectStr.equals("0")&& num != 0) {
@@ -80,10 +72,6 @@ public class TestRegistAction extends Action {
 
 			tests = tDao.filter(entYear, classNum, subject , num, teacher.getSchool());
 
-		}else{
-//			System.out.println("2-5");
-//			errors.put("f1", "指定してください");
-//			req.setAttribute("errors", errors);
 		}
 
 		//ビジネスロジック 4
@@ -122,14 +110,11 @@ public class TestRegistAction extends Action {
 
 		// リクエストにテストリストをセット
 		req.setAttribute("tests", tests);
-		System.out.println("aaaaaaaaaaaaaaaa");
-		System.out.println(tests);
 		// リクエストにデータをセット
 		req.setAttribute("class_num_set", clist);
 		req.setAttribute("ent_year_set", entYearSet);
 		req.setAttribute("subject_set", slist);
-		System.out.println(clist);
-		System.out.println(slist);
+
 		//req.setAttribute("num", num);
 		req.setAttribute("ent_year", entYear);
 		//JSPへフォワード 7
