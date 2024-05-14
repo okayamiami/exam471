@@ -3,7 +3,7 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel='stylesheet' href='../css/style.css'>
+<link rel='stylesheet' href='../../css/style.css'>
 <title>得点管理システム</title>
 </head>
 <div>
