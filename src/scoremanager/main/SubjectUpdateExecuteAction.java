@@ -31,7 +31,8 @@ public class SubjectUpdateExecuteAction extends Action{
 		String school_cd = req.getParameter("school_cd");//学校コード
 		Map<String, String> errors = new HashMap<>();//エラーメッセージ
 		Teacher teacher = (Teacher)session.getAttribute("user");// ログインユーザーを取得
-		School sc = scDao.get(school_cd);
+		School sc = scDao.get(school_cd);//scDAOのgetメソッドで学校コードを取得
+
 
 		//リクエストパラメータ―の取得 2
 		//取得
@@ -39,22 +40,17 @@ public class SubjectUpdateExecuteAction extends Action{
 		subject_name = req.getParameter("subject_name");
 		school_cd = req.getParameter("school_cd");
 
-
-		System.out.println("UPdateExe2");
-
 		//DBからデータ取得 3
 		//検索
 		Subject subject = sbDao.get(subject_cd, sc);//科目コードから科目インスタンスを取得
-		List<Subject> list = sbDao.filter(teacher.getSchool());
+		List<Subject> list = sbDao.filter(teacher.getSchool());//sbDAOのfilterメソッドで学校コードをlistにぶち込む
+
 
 		//ビジネスロジック 4
 		//DBへデータ保存 5
 		//条件で4～5が分岐
-		System.out.println("UPdateExe3");
 		if ( subject!= null) {
 			System.out.println("updateExe開始");
-			// 科目インスタンスを初期化
-			//subject = new Subject();
 			// インスタンスに値をセット
 			subject.setSubject_cd(subject_cd);
 			subject.setName(subject_name);
@@ -63,6 +59,7 @@ public class SubjectUpdateExecuteAction extends Action{
 			sbDao.save(subject);
 			System.out.println("updateExe完了");
 		} else {
+			//科目がない時の処理
 			System.out.println("科目がnull");
 			errors.put("list", "科目が存在していません");
 		}
@@ -78,11 +75,10 @@ public class SubjectUpdateExecuteAction extends Action{
 			req.setAttribute("errors", errors);
 			req.setAttribute("subject_cd", subject_cd);
 			req.setAttribute("subject_name", subject_name);
-			req.getRequestDispatcher("subject_update.jsp").forward(req, res);
+			req.getRequestDispatcher("subject_update.jsp").forward(req, res);//繰り返し処理
 			return;
 		}
-		System.out.println("完了ページへ");
-
+		//完了ページ表示
 		req.getRequestDispatcher("subject_update_done.jsp").forward(req, res);
 }
 

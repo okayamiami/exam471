@@ -16,19 +16,15 @@ public class SubjectCreateAction extends Action{
 	@Override
 	public void execute(HttpServletRequest req, HttpServletResponse res) throws Exception {
 
-		System.out.println("クリエイト１");
 		//ローカル変数の宣言 1
 		HttpSession session = req.getSession(true);// セッションを取得
 		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
 
 		SubjectDao sbDao = new SubjectDao();//科目Dao
-		//リクエストパラメータ―の取得 2
-		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		// ログインユーザーの学校コードをもとに科目の一覧を取得
 		List<Subject> list = sbDao.filter(teacher.getSchool());
 
 		//DBからデータ取得 3
-
 		//なし
 		//ビジネスロジック 4
 		//なし

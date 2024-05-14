@@ -24,7 +24,7 @@ public class SubjectCreateExecuteAction extends Action{
 		HttpSession session = req.getSession();//セッション
 		SubjectDao sbDao = new SubjectDao();//科目Dao
 		String subject_cd = "";//科目コード
-		Subject subject = null;
+		Subject subject = null;//科目の情報
 		String subject_name = "";//科目名
 		Map<String, String> errors = new HashMap<>();// エラーメッセージ
 		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
@@ -42,11 +42,9 @@ public class SubjectCreateExecuteAction extends Action{
 		//ビジネスロジック 4
 		//DBへデータ保存 5
 		//条件で手順4~5の内容が分岐
-
 		System.out.println("クリエイト3");
 		if (subject == null) {// 科目コードが未登録だった場合
 			System.out.println("クリエイト開始");
-
 		// 科目インスタンスを初期化
 		subject = new Subject();
 		// インスタンスに値をセット
@@ -60,12 +58,11 @@ public class SubjectCreateExecuteAction extends Action{
 		} else{//入力された学番がDBに保存されていた場合
 
 		System.out.println("クリエイトできてない");
-		errors.put("list", "科目コードが重複しています");
+		errors.put("list", "科目コードが重複しています!!");
 		}
 
 		//レスポンス値をセット 6
 		//JSPへフォワード 7
-
 		//System.out.println("3-2");
 		if(!errors.isEmpty()){
 
@@ -76,6 +73,7 @@ public class SubjectCreateExecuteAction extends Action{
 			req.getRequestDispatcher("subject_create.jsp").forward(req, res);
 			return;
 		}
+		//完了画面表示とｓｂリストに科目情報を入れておく
 		req.setAttribute("sblist", list);
 		req.getRequestDispatcher("subject_create_done.jsp").forward(req, res);
 		System.out.println("クリエイトend");

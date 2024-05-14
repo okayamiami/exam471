@@ -12,9 +12,12 @@
 
 <h2>科目情報削除</h2>
 
+	<!-- Exeに行ってと言っている -->
 	<form action = "SubjectDeleteExecute.action" method="post">
 
+				<!-- 科目名と科目コードを出し確認する -->
 				<p>${subject.name}(${subject.subject_cd})を削除しても構いませんか？？？</p>
+	<!-- 値をExeに送っている -->
 	<input type="hidden" name="subject_name" value="${subject.name}">
 	<input type="hidden" name="subject_cd" value="${subject.subject_cd}">
 	<input type="hidden" name="school_cd" value="${school.cd}">

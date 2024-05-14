@@ -16,10 +16,8 @@
 <c:import url="/common/navi.jsp" />
 
 <h2>科目管理</h2>
+	<!-- 新規登録ぺージ のリンク-->
 	<a href="SubjectCreate.action">新規登録</a>
-
-
-
 
 			<table class="table table-hover">
 				<tr>
@@ -28,8 +26,10 @@
 					<th></th>
 					<th></th>
 				</tr>
+				<!-- 科目名と科目コードをあるだけ(所属している学校の) -->
 				<c:forEach var="subject" items="${sblist}">
 					<tr>
+					<!-- 表示 -->
 						<td>${subject.subject_cd}</td>
 						<td>${subject.name}</td>
 						<td><a href="SubjectUpdate.action?subject_cd=${subject.subject_cd}">更新</a></td>

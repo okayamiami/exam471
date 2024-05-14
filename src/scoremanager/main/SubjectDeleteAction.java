@@ -24,30 +24,26 @@ public class SubjectDeleteAction extends Action{
 		Teacher teacher = (Teacher) session.getAttribute("user");// ログインユーザーを取得
 		SubjectDao sbDao = new SubjectDao();//科目Dao
 
-		String subject_name = req.getParameter("subject_name");
+		String subject_name = req.getParameter("subject_name");//科目名
 		String subject_cd = req.getParameter("subject_cd");//科目コード
+
 		//リクエストパラメータ―の取得 2
 		// ログインユーザーの学校コードをもとにクラス番号の一覧を取得
 		// ログインユーザーの学校コードをもとに科目の一覧を取得
 		List<Subject> list = sbDao.filter(teacher.getSchool());
 		Subject subject = sbDao.get(subject_cd,teacher.getSchool());//科目コードと学校コードを取得
-		SchoolDao scDao =new SchoolDao();
-		School sch=scDao.get(teacher.getSchool().getCd());
+		SchoolDao scDao =new SchoolDao();//サブジェクトDAOインスタンス化
+		School sch=scDao.get(teacher.getSchool().getCd());//ログインユーザーの学校コードを取得
 
 
 		//DBからデータ取得 3
-
 		//なし
 		//ビジネスロジック 4
 		//なし
-		if(subject==null){
-			System.out.println("subjectに入ってない");
-		}else{
-			System.out.println("subjectに入ってる");
-		}
 		//DBへデータ保存 5
 		//なし
 		//レスポンス値をセット 6
+
 		// リクエストにデータをセット
 		req.setAttribute("subject_name", subject_name);
 		req.setAttribute("subject_cd", subject_cd);
@@ -55,6 +51,7 @@ public class SubjectDeleteAction extends Action{
 		req.setAttribute("sblist", list);
 		req.setAttribute("subject", subject);
 
+		//フォワード
 		req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
 
 	}

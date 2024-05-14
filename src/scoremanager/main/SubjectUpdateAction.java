@@ -27,18 +27,18 @@ public class SubjectUpdateAction extends Action{
 		Teacher teacher = (Teacher)session.getAttribute("user");// ログインユーザーを取得
 		String subject_cd = req.getParameter("subject_cd");//科目コード
 		String school_cd = req.getParameter("school_cd");//学校コード
-		String subject_name = req.getParameter("subject_name");
-		School sc = scDao.get(school_cd);
+		String subject_name = req.getParameter("subject_name");//科目名
+		School sc = scDao.get(school_cd);//scDAOのgetメソッドで学校コードを取得
 
 		//取得
 		req.setAttribute("subject_name", subject_name);
 		req.setAttribute("subject_cd", subject_cd);
 
-		System.out.println("UPdate2");
 		//検索
 		Subject subject = sbDao.get(subject_cd, sc);//科目コードから科目インスタンスを取得
-		List<Subject> list = sbDao.filter(teacher.getSchool());
-		School sch=scDao.get(teacher.getSchool().getCd());
+		List<Subject> list = sbDao.filter(teacher.getSchool());//sbDAOのfilterを使い情報を取得
+		School sch=scDao.get(teacher.getSchool().getCd());//scDAOのgetメソッドで学校コードを取得
+
 
 		//ビジネスロジック
 		//科目コードから学生インスタンスを取得

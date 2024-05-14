@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import bean.School;
 import bean.Subject;
 import bean.Teacher;
 import dao.SchoolDao;
@@ -22,15 +21,15 @@ public class SubjectDeleteExecuteAction extends Action{
 		//ローカル変数の宣言 1
 		HttpSession session = req.getSession();//セッション
 		SubjectDao sbDao = new SubjectDao();//科目Dao
-		SchoolDao scDao = new SchoolDao();
-		Subject subject = null;
+		SchoolDao scDao = new SchoolDao();//学校DAO
+		Subject subject = null;//科目
 
 		//取得
 		String subject_cd = req.getParameter("subject_cd");//科目コード
 		String school_cd = req.getParameter("school_cd");//学校コード
 		String subject_name = req.getParameter("subject_name");//科目名
-		School sc = scDao.get(school_cd);
-		Teacher teacher = (Teacher) session.getAttribute("user");
+		//School sc = scDao.get(school_cd);
+		Teacher teacher = (Teacher) session.getAttribute("user");//ログインユーザ
 
 
 		//検索
@@ -73,10 +72,10 @@ public class SubjectDeleteExecuteAction extends Action{
 			req.setAttribute("subject_cd", subject_cd);
 			req.setAttribute("subject_name", subject_name);
 			req.setAttribute("school_cd", school_cd);
-			req.getRequestDispatcher("subject_delete.jsp").forward(req, res);
+			req.getRequestDispatcher("subject_delete.jsp").forward(req, res);//同じ画面へ移行
 			return;
 		}
-		req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);
+		req.getRequestDispatcher("subject_delete_done.jsp").forward(req, res);//完了画面へ移行
 
 	}
 
