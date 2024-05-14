@@ -4,15 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>得点管理システム</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<p>ログアウトしました</p>
-	<a href="Login.action">ログイン</a>
-
-
-</form>
-
 
 </body>
 </html>
