@@ -30,9 +30,22 @@
 
 	<!-- パスワード -->
 	<label>パスワード</label>
-	<input type="password" name="password" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい" required>
+	<input type="password" id="password" maxlength="20" placeholder="20文字以内の半角英数字でご入力下さい" required/>
+	<input type="checkbox" id="showPassword" onchange="togglePasswordVisibility()" />
+	<label for="showPassword">パスワードを表示</label>
 
+	<script>
+		function togglePasswordVisibility() {
+			let passwordInput = document.getElementById("password");
+			let showPasswordCheckbox = document.getElementById("showPassword");
 
+			if (showPasswordCheckbox.checked) {
+				passwordInput.type = "text";
+			} else {
+				passwordInput.type = "password";
+			}
+		}
+	</script><br>
 
 	<input type="submit" name="login" value="ログイン"/>
 
