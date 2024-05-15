@@ -27,7 +27,7 @@
 
 
 
-<div class="main">
+
 <form action = "LoginExecute.action" method="post">
 
 	<div class="log">
@@ -63,7 +63,7 @@
 		<input type="submit" name="login" value="ログイン"/>
 		</div>
 </form>
-</div>
+
 
 
 </body>
