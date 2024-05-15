@@ -46,7 +46,6 @@
 
 		<button>検索</button>
 
-		<div>${errors.get("f1")}</div>
 		</div>
 	</form>
 
