@@ -6,7 +6,7 @@
 
 
 .side {
-  width: 30%;
+  width: 20%;
   height: 300px;
   text-align: center;
 
@@ -14,9 +14,9 @@
 
 }
 .con {
-  width: 70%;
+  width: 80%;
   height: 300px;
-  text-align: center;
+  text-align: left;
   margin-left: 20px;
 
 }

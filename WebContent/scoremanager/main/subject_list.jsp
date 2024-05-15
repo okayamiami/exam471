@@ -12,9 +12,9 @@
 <c:import url="/common/header.jsp" />
 
 <body>
-
+<div class="main">
 <c:import url="/common/navi.jsp" />
-
+<div class ="con">
 <h2>科目管理</h2>
 	<!-- 新規登録ぺージ のリンク-->
 	<a href="SubjectCreate.action">新規登録</a>
@@ -37,6 +37,9 @@
 					</tr>
 				</c:forEach>
 			</table>
+
+</div>
+</div>
 </body>
 <c:import url="/common/footer.jsp" />
 </html>
