@@ -82,7 +82,7 @@
 						<td>${test.student.student_no}</td>
 						<td>${test.student.name}</td>
 						<td>
-						<input type="text"
+						<input type="number"
 							name="point_${test.student.student_no}" placeholder="点数を変更" maxlength="3"
 							value="${test.point}" />
 						<div>${errors.get("point")}</div>
