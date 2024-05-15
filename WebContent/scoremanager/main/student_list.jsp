@@ -4,14 +4,14 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<div class ="wrapper">
+<body>
+
 <c:import url="/common/header.jsp" />
 
-</div>
-<body>
-<div class="side">
+<div class="main">
 <c:import url="/common/navi.jsp" />
-</div>
+
+<div class ="con">
 	<h2>学生管理</h2>
 	<a href="StudentCreate.action">新規登録</a>
 
@@ -85,6 +85,8 @@
 			<div>学生情報が存在しませんでした</div>
 		</c:otherwise>
 	</c:choose>
+</div>
+</div>
 
 </body>
 <c:import url="/common/footer.jsp" />
