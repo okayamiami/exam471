@@ -6,6 +6,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>得点管理システム</title>
 </head>
+<div>
+	<h1>得点管理システム</h1>
+
+	<h2>ログイン</h2>
+
+	<div>${errors.get("null")}</div>
+</div>
+
 <body>
 
 <form action = "LoginExecute.action" method="post">
@@ -21,7 +29,7 @@
 	required:input入力を必須にする
 
  -->
-	<div>${errors.get("null")}</div>
+
 	<!-- ID -->
 	<label>ID</label>
 	<input type="text" name="id" maxlength="20" placeholder="半角でご入力下さい"
