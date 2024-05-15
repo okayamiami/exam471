@@ -102,8 +102,8 @@ public class TestRegistAction extends Action {
 		if (subjectStr != null){
 			subject = subDao.get(subjectStr,null );
 		String subjectName = subject.getName();
-		//req.setAttribute("subjectName", subjectName);
-		req.setAttribute("f3", subjectName);
+		req.setAttribute("subjectName", subjectName);
+		req.setAttribute("f3", subject.getSubject_cd());
 		}
 
 		req.setAttribute("f4", num);
@@ -119,6 +119,7 @@ public class TestRegistAction extends Action {
 		req.setAttribute("ent_year", entYear);
 		//JSPへフォワード 7
 		req.getRequestDispatcher("test_regist.jsp").forward(req, res);
+		System.out.println("test1");
 	}
 
 

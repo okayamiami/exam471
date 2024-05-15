@@ -26,23 +26,35 @@ public class TestRegistExecuteAction extends Action {
 		SubjectDao subjectDao = new SubjectDao();
 		List<Test> lists = new ArrayList<>();
 		Map<String,String> errors = new HashMap<>();
+		System.out.println("test2");
 
 		//リクエストパラメータの取得
 		String entYearStr = req.getParameter("f1");
+		System.out.println(entYearStr);
 		String classNum = req.getParameter("f2");
+		System.out.println(classNum);
 		String subjectCd = req.getParameter("f3");
+		System.out.println(subjectCd);
 		String Num = req.getParameter("f4");
-		List<Test> list = tDao.filter(Integer.parseInt(entYearStr),classNum, subjectDao.get(subjectCd, teacher.getSchool()),Integer.parseInt(Num),teacher.getSchool());
+		System.out.println(Num);
 
+		//DBからデータ取得 //error箇所↓
+		List<Test> list = tDao.filter(Integer.parseInt(entYearStr),classNum, subjectDao.get(subjectCd, teacher.getSchool()),Integer.parseInt(Num),teacher.getSchool());
+		System.out.println("test3");
 		for(Test test : list){
+			System.out.println("test31313");
 			String point = req.getParameter("point_" + test.getStudent().getStudent_no());
+			System.out.println(point);
 			if(point != "")
 				test.setPoint(Integer.parseInt(point));
-			list.add(test);
+			lists.add(test);
+		System.out.println("test333");
 		}
 
 		//DBへデータ保存
 		tDao.save(lists);
+		System.out.println("test2525");
 		req.getRequestDispatcher("test_regist_done.jsp").forward(req, res);
+		System.out.println("test4");
 	}
 }

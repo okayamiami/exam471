@@ -127,7 +127,7 @@ public class TestDao extends Dao{
 			statement = connection.prepareStatement("select ent_year,student.class_num, student.student_no as student_no, isnull(subject_cd, ?)as subject_cd,coalesce(test.no, ?) as no ,coalesce(point,null)as point from test right outer join student on test.student_no = student.student_no"+ condition + order);
 
 			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, school.getCd());
+			statement.setString(1, subject.getSubject_cd());
 			statement.setInt(2, num);
 			statement.setInt(3, entYear);
 			statement.setString(4, classNum);
@@ -220,7 +220,7 @@ public class TestDao extends Dao{
 			statement.setString(6, test.getClassNum());
 
 			}else{
-				statement = connection.prepareStatement("update test set point=? where student_no=? and subject_cd=? and no=?");
+				statement = connection.prepareStatement("update test set point=? where student_no=? and subject_cd=? and school_cd=? and no=?");
 				statement.setInt(1, test.getPoint());
 				statement.setString(2, test.getStudent().getStudent_no());
 				statement.setString(3, test.getSubject().getSubject_cd());
