@@ -45,8 +45,11 @@ public class TestRegistExecuteAction extends Action {
 			System.out.println("test31313");
 			String point = req.getParameter("point_" + test.getStudent().getStudent_no());
 			System.out.println(point);
-			if(point != "")
+			if(point != ""){
 				test.setPoint(Integer.parseInt(point));
+			}else{
+				test.setPoint(-1);
+			}
 			lists.add(test);
 		System.out.println("test333");
 		}

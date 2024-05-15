@@ -12,7 +12,7 @@
 <c:import url="/common/header.jsp" />
 <body>
 
-<c:import url="/common/navigation.jsp" />
+<c:import url="/common/navi.jsp" />
 
 	<h2>成績管理</h2>
 
@@ -40,7 +40,7 @@
 			<option value="0">--------</option>
 			<c:forEach var="sub" items="${subject_set}">
 				<%-- 現在のsubと選択されていたf3が一致していた場合selectedを追記 --%>
-				<option value="${sub.subject_cd}" <c:if test="${sub.name==f3}">selected</c:if>>${sub.name}</option>
+				<option value="${sub.subject_cd}" <c:if test="${sub.subject_cd==f3}">selected</c:if>>${sub.name}</option>
 			</c:forEach>
 		</select>
 
@@ -80,8 +80,8 @@
 						<td>${test.student.name}</td>
 						<td>
 						<input type="text"
-							name="point" placeholder="点数を変更" maxlength="3"
-							value="${point}" />
+							name="point_${test.student.student_no}" placeholder="点数を変更" maxlength="3"
+							value="${test.point}" />
 						<div>${errors.get("point")}</div>
 
 						</td>
@@ -89,7 +89,12 @@
 
 				</c:forEach>
 			</table>
-		<input type="submit" name="f1" value="登録して終了">
+
+			<input type="hidden" name="f1" value ="${f1}">
+			<input type="hidden" name="f2" value ="${f2}">
+			<input type="hidden" name="f3" value ="${f3}">
+			<input type="hidden" name="f4" value ="${f4}">
+			<input type="submit" value="登録して終了">
 		</form>
 		</c:when>
 

@@ -65,6 +65,11 @@ public class TestRegistAction extends Action {
 			num = Integer.parseInt(numStr);
 		}
 
+		if (subjectStr != null && !subjectStr.equals("0")) {
+
+			subject.setSubject_cd(subjectStr);
+		}
+
 
 
 		if (entYear != 0 && !classNum.equals("0") && !subjectStr.equals("0")&& num != 0) {
@@ -76,11 +81,7 @@ public class TestRegistAction extends Action {
 
 		//ビジネスロジック 4
 
-		if (entYearStr != null) {
-			// 数値に変換
 
-			entYear = Integer.parseInt(entYearStr);
-		}
 		// リストを初期化
 		List<Integer> entYearSet = new ArrayList<>();
 		// 10年前から1年後まで年をリストに追加

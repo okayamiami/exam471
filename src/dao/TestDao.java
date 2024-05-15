@@ -24,7 +24,7 @@ public class TestDao extends Dao{
 		Test test = new Test();
 		// データベースへのコネクションを確立
 		Connection connection = getConnection();
-		String condition = " where student_no=? and subject_cd=? and no=?";
+		String condition = " where student_no=? and subject_cd=? and school_cd=? and no=?";
 		// プリペアードステートメント
 		PreparedStatement statement = null;
 
@@ -116,7 +116,7 @@ public class TestDao extends Dao{
 		ResultSet rSet = null;
 
 		// SQL文の条件
-		String condition = " where ent_year=? and student.class_num=? and (subject_cd=? or subject_cd is null) and (test.no=? or test.no is null) and student.school_cd=? ";
+		String condition = " where ent_year=? and student.class_num=? and subject_cd=? and test.no=? and student.school_cd=? ";
 
 
 		// SQL文のソート
@@ -124,16 +124,16 @@ public class TestDao extends Dao{
 
 		try {
 			// プリペアードステートメントにSQL文をセット
-			statement = connection.prepareStatement("select ent_year,student.class_num, student.student_no as student_no, isnull(subject_cd, ?)as subject_cd,coalesce(test.no, ?) as no ,coalesce(point,null)as point from test right outer join student on test.student_no = student.student_no"+ condition + order);
+			statement = connection.prepareStatement(" select ent_year,student.class_num, student.student_no as student_no, subject_cd , test.no, COALESCE(point, -1)as point from test right outer join student on test.student_no = student.student_no " + condition + order);
 
 			// プリペアードステートメントに学校コードをバインド
-			statement.setString(1, subject.getSubject_cd());
-			statement.setInt(2, num);
-			statement.setInt(3, entYear);
-			statement.setString(4, classNum);
-			statement.setString(5, subject.getSubject_cd());
-			statement.setInt(6, num);
-			statement.setString(7, school.getCd());
+
+			statement.setInt(1, entYear);
+			statement.setString(2, classNum);
+			statement.setString(3, subject.getSubject_cd());
+			System.out.println(subject.getSubject_cd());
+			statement.setInt(4, num);
+			statement.setString(5, school.getCd());
 
 			// プライベートステートメントを実行
 			rSet = statement.executeQuery();

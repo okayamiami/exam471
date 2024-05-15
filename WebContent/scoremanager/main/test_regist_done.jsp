@@ -11,7 +11,7 @@
 <body>
 	<h2>科目情報更新</h2>
 		<p>更新が完了しました</p>
-	<a href="menu.action">戻る</a>
+	<a href="Menu.action">戻る</a>
 	<a href="TestRegist.action">科目一覧</a>
 
 </body>
