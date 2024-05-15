@@ -1,0 +1,34 @@
+
+.header {
+	width: 100%;
+  text-align: center;
+}
+
+.pas {
+	width: 950px;
+  text-align: rightr;
+  padding: 10px 0 0 0;
+}
+
+.log {
+	width: 587px;
+  text-align: right;
+   padding: 10px 0 0 0;
+}
+
+.main{
+	width: 100%;
+	height: 100%;
+	 text-align: center;
+}
+
+.kitazima {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0 20px 0;
+}
+
+.jouji {
+  width: 100%;
+  text-align: center;
+}
