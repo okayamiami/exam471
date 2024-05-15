@@ -9,11 +9,14 @@
 
 <title>得点管理システム</title>
 </head>
-<c:import url="/common/header.jsp" />
 <body>
 
+<c:import url="/common/header.jsp" />
+
+<div class="main">
 <c:import url="/common/navi.jsp" />
 
+<div class ="con">
 	<h2>成績管理</h2>
 
 	<form method="get">
@@ -102,7 +105,8 @@
 		<div>学生情報が存在しませんでした</div>
 		</c:when>
 	</c:choose>
-
+</div>
+</div>
 </body>
 <c:import url="/common/footer.jsp" />
 </html>

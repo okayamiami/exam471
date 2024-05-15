@@ -9,10 +9,19 @@
 <title>得点管理システム</title>
 </head>
 <body>
+
+<c:import url="/common/header.jsp" />
+
+<div class="main">
+<c:import url="/common/navi.jsp" />
+
+<div class ="con">
 	<h2>科目情報更新</h2>
 		<p>更新が完了しました</p>
 	<a href="TestRegist.action">戻る</a>
 	<a href="TestList.action">成績参照</a>
+</div>
+</div>
 
 </body>
 </html>
