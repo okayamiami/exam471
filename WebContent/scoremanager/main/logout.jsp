@@ -11,10 +11,6 @@
 <div class="header">
 <div>
 	<h1>得点管理システム</h1>
-
-	<h2>ログイン</h2>
-
-	<div>${errors.get("null")}</div>
 </div>
 
 	<p>ログアウトしました</p>
